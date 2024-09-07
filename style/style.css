@@ -1,0 +1,156 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+    overflow-x: hidden; 
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: white;
+    position: relative;
+    width: 100%;
+}
+
+
+.logo img {
+    width: 150px;
+}
+
+nav {
+    margin-left: auto;
+}
+nav {
+    margin-left: auto; 
+}
+
+nav ul {
+    list-style: none;
+    display: flex; 
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(10px); 
+    text-transform: uppercase;
+    text-decoration-color: #f42121;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    color: #bb0d0d; 
+}
+
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    background-color: #f8f8f8;
+    position: relative;
+    height: 80vh;
+}
+
+.hero-text {
+    max-width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    color: #333;
+}
+
+.hero-text p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.explore-button {
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.explore-button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.hero-image img {
+    width: 550px;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    background-color: #f8f8f8;
+    position: relative;
+    height: 80vh;
+    background-image: url('Images/fundo.png');
+    background-position: right bottom; 
+    background-size: contain; 
+    background-repeat: no-repeat;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #eee;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-item h2 {
+    font-size: 48px;
+    color: #333;
+}
+
+.stat-item p {
+    font-size: 18px;
+    color: #666;
+}
+.paw-image img {
+    width: 350px;
+    height: 350px;
+    position: top;
+    position: relative; z-index: 0; 
+    bottom: 0;
+    left: 40px; 
+    right: 0; 
+    
+    opacity: 20%;
+   
+}
