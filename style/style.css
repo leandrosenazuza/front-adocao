@@ -5,33 +5,34 @@
     box-sizing: border-box;
 }
 
+.container-body {
+    width: 1440px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f0f0f0;
     overflow-x: hidden; 
-
+    background-image: url('/Images/fundo2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100%;
+    overflow: hidden;
+}
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background-color: white;
     position: relative;
-    width: 100%;
 }
-
 
 .logo img {
     width: 150px;
-}
-
-nav {
-    margin-left: auto;
-}
-nav {
-    margin-left: auto; 
 }
 
 nav ul {
@@ -63,19 +64,30 @@ nav ul li a:hover {
     color: #bb0d0d; 
 }
 
+.container-hero-stats {
+    display: flex;
+    align-items: center;
+    margin-top: -125px;
+    justify-content: center;
+    
+
+}
+.container-hero {
+    width: 60%;
+}
 
 .hero {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 40px;
-    background-color: #f8f8f8;
+    
     position: relative;
     height: 80vh;
 }
 
 .hero-text {
-    max-width: 50%;
+    max-width: 100%;
 }
 
 .hero-text h1 {
@@ -104,29 +116,25 @@ nav ul li a:hover {
     color: #fff;
 }
 
-.hero-image img {
-    width: 550px;
+.cat-bottom-img img {
+
 }
 
-.hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 40px;
-    background-color: #f8f8f8;
-    position: relative;
-    height: 80vh;
-    background-image: url('Images/fundo.png');
-    background-position: right bottom; 
-    background-size: contain; 
-    background-repeat: no-repeat;
+.hero-image img {
+   z-index: -1;
+   filter: drop-shadow(-1px 2px 2px #737373);
 }
+
 
 .stats {
     display: flex;
     justify-content: space-around;
     padding: 20px;
-    background-color: #eee;
+    background-color: rgb(238, 238, 238);
+    border: 1px solid;
+    border-radius: 25px;
+    filter: blur(1);
+    margin-top: -25px;
 }
 
 .stat-item {
@@ -142,7 +150,7 @@ nav ul li a:hover {
     font-size: 18px;
     color: #666;
 }
-.paw-image img {
+/*.paw-image img {
     width: 350px;
     height: 350px;
     position: top;
@@ -153,4 +161,4 @@ nav ul li a:hover {
     
     opacity: 20%;
    
-}
+}*/ 
