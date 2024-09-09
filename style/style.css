@@ -141,7 +141,7 @@ nav ul li a:hover {
     text-align: center;
 }
 
-.stat-item h2 {
+.stat-item span {
     font-size: 48px;
     color: #333;
 }
