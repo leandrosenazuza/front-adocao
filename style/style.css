@@ -13,14 +13,17 @@
 }
 
 
-body {
+.body {
     font-family: 'Roboto', sans-serif;
-    overflow-x: hidden; 
-    background-image: url('/Images/fundo2.png');
     background-size: contain;
     background-repeat: no-repeat;
-    height: 100%;
-    overflow: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+    
+}
+
+.bodyhome {
+    background-image: url('/Images/fundo2.png');
 }
 
 header {
@@ -29,6 +32,10 @@ header {
     align-items: center;
     padding: 20px 40px;
     position: relative;
+}
+
+.header {
+    width: 100vw;
 }
 
 .logo img {
@@ -67,9 +74,8 @@ nav ul li a:hover {
 .container-hero-stats {
     display: flex;
     align-items: center;
-    margin-top: -125px;
     justify-content: center;
-    
+    margin-top: -125px;
 
 }
 .container-hero {
@@ -162,3 +168,9 @@ nav ul li a:hover {
     opacity: 20%;
    
 }*/ 
+
+
+/* Pagina Sobre Nós */
+.bodysobre {
+    background-image: url('/Images/cat2.png');
+}
