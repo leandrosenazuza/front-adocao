@@ -183,10 +183,11 @@ nav ul li a:hover {
     padding-left: 20px;
     border-radius: 25px;
     margin-top: 10px;
-    background-image: url('/Images/gato4.jpg');
-    background-size: cover;
+    background-image: url('/Images/gato5.png');
+    background-size: contain;
     background-position: -25px;
     background-position-x: right;
+    background-repeat: no-repeat;
 }
 
 .banner-text {
