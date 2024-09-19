@@ -15,28 +15,17 @@
 }
 
 
-<<<<<<< HEAD
 body {
     width: 100%;
     
-=======
+
 .body {
->>>>>>> f40d7009e4e009e942977181a9d578068243d1ba
     font-family: 'Roboto', sans-serif;
     background-size: contain;
     background-repeat: no-repeat;
-<<<<<<< HEAD
-    
-    
-=======
-    min-height: 100vh;
-    min-height: 100dvh;
-    
-}
 
-.bodyhome {
-    background-image: url('/Images/fundo2.png');
->>>>>>> f40d7009e4e009e942977181a9d578068243d1ba
+    
+    
 }
 
 header {
