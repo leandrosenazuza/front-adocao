@@ -7,25 +7,24 @@
 
 .container-body {
     max-width: 1440px;
-    min-height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
-    min-height: calc(var(--vh, 1vh) * 100);
     display: block;
     margin-left: auto;
     margin-right: auto; 
 }
-
-
-body {
-    width: 100%;
-    
+  
 
 .body {
     font-family: 'Roboto', sans-serif;
     background-size: contain;
+    background-image: url('/Images/fundo2.png');
     background-repeat: no-repeat;
-
-    
-    
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
 }
 
 header {
@@ -173,6 +172,52 @@ nav ul li a:hover {
 
 
 /* Pagina Sobre Nós */
-.bodysobre {
-    background-image: url('/Images/cat2.png');
+
+
+.banner-sobre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    border: #333 1px solid;
+    padding-left: 20px;
+    border-radius: 25px;
+    margin-top: 10px;
+    background-image: url('/Images/gato4.jpg');
+    background-size: cover;
+    background-position: -25px;
+    background-position-x: right;
 }
+
+.banner-text {
+    width: 40%;
+}
+
+.banner-title {
+    font-size: 48px;
+    color: #333;
+}
+
+.banner-text {
+    font-size: 18px;
+    color: #333;
+    width: 80%;
+    
+}
+
+.cor-vermelha {
+    color:#f42121;
+}
+
+.banner-image {
+    width: 60%;
+    /*background-image: url('/Images/gato.jpg');*/
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.banner-img {
+    
+}
+
