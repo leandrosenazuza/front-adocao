@@ -234,44 +234,70 @@ img {
     height: 60vh;
     margin-right: 10px;
     border-radius: 25px;
-    -webkit-filter:grayscale(100%);
-    opacity: 50%;
 }
 
 .acoes:hover {
-    -webkit-filter:grayscale(0%);
+    /*-webkit-filter:grayscale(100%);*/
     opacity: 100%;
     transition: 1s;
+    color:#d20a0a;
+    font-size: 50px;
+    font-weight:bolder;
+    text-shadow: 5px 5px 10px black;
+    
+    
 }
 
 
 .adote {
     background-color: aquamarine;
     margin-right: 10px;
-    background-image: url('/Images/view-cats-dogs-being-friends.jpg');
+    background-image: url('/Images/view-cats-dogs-being-friends_blue.png');
     background-size: cover;
-    
-    
+}
+
+.adote:hover {
+    background-image: url('/Images/view-cats-dogs-being-friends.jpg');
+    transition: 1s;
 }
 
 .hotelzinho {
     background-color: chocolate;
     margin-left: 10px;
     margin-right: 10px;
-    background-image: url('/Images/pretty-girl-embarcing-cat-dog.jpg');
+    background-image: url('/Images/pretty-girl-embarcing-cat-dog-purple.png');
     background-size: cover;
     background-position: center;
     
 }
 
+.hotelzinho:hover {
+    background-image: url('/Images/pretty-girl-embarcing-cat-dog2.png');
+    transition: 1s;
+}
+
 .doacao {
     background-color: blueviolet;
     margin-left: 10px; 
-    background-image: url('/Images/money-finance-woman-with-piggy.jpg');
+    background-image: url('/Images/money-finance-woman-with-piggy2-green.png');
     background-size: cover;
-    
+}
+
+.doacao:hover {
+    background-image: url('/Images/money-finance-woman-with-piggy2.png');
+    transition: 1s;
 }
 
 .text-actions {
     padding-top: 50vh;
+}
+
+.wrap-cards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-container {
+    margin: 10px;
 }
