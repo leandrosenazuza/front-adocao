@@ -5,26 +5,26 @@
     box-sizing: border-box;
 }
 
-.container-body {
-    max-width: 1440px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto; 
-}
-  
-
 .body {
     font-family: 'Roboto', sans-serif;
     background-size: contain;
     background-image: url('/Images/fundo2.png');
     background-repeat: no-repeat;
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: row;
     justify-content: center; 
+}
+
+.container-body {
+    min-height: 100vh;
+    max-width: 1440px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
 }
 
 header {
@@ -172,7 +172,6 @@ nav ul li a:hover {
 
 
 /* Pagina Sobre Nós */
-
 
 .banner-sobre {
     display: flex;
