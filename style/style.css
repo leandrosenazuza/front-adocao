@@ -183,11 +183,12 @@ nav ul li a:hover {
     padding-left: 20px;
     border-radius: 25px;
     margin-top: 10px;
-    background-image: url('/Images/gato5.png');
+    /*background-image: url('/Images/catdog.png');*/
     background-size: contain;
     background-position: -25px;
     background-position-x: right;
     background-repeat: no-repeat;
+    filter: drop-shadow(-1px 2px 2px #737373);
 }
 
 .banner-text {
@@ -219,6 +220,7 @@ nav ul li a:hover {
 }
 
 .banner-img {
+    width: 127%;
     
 }
 
