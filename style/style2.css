@@ -113,7 +113,7 @@ img {
 .foto-banner {
     height: 160%;
     width: 120%;
-    margin-top: 14%;
+    margin-top: 3%;
     filter: drop-shadow(5px 10px 2px #737373);
 }
 
@@ -286,6 +286,11 @@ img {
 .doacao:hover {
     background-image: url('/Images/money-finance-woman-with-piggy2.png');
     transition: 1s;
+}
+
+.saiba-button {
+    margin-bottom: 50px;
+    margin-top: 40px;
 }
 
 .text-actions {
