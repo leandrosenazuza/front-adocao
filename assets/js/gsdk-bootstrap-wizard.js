@@ -37,7 +37,11 @@ $(document).ready(function(){
 		    email: {
 		      required: true,
 		      minlength: 3,
-		    }
+		    },
+            password: {
+                required: true,
+                minlength: 4,
+            }
         }
 	});
 

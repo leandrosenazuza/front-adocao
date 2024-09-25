@@ -95,7 +95,7 @@ body {
 .card .cover{
     height: 45vh;
     overflow: hidden;
-    border-radius: 4px 4px 0 0;
+    border-radius: 20px 20px 0 0;
 }
 .card .cover img{
     width: 100%;

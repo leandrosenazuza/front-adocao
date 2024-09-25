@@ -653,12 +653,12 @@ h1 .subtitle {
   border-color: #05AE0E;
 }
 .btn-fill.btn-warning {
-  background-color: #FF9500;
-  border-color: #FF9500;
+  background-color: #FF3B30;
+  border-color: #FF3B30;
 }
 .btn-fill.btn-warning:hover, .btn-fill.btn-warning:focus, .btn-fill.btn-warning:active, .btn-fill.btn-warning.active, .open .dropdown-toggle .btn-fill.btn-warning {
-  background-color: #ED8D00;
-  border-color: #ED8D00;
+  background-color: #FF3B30;
+  border-color: #FF3B30;
 }
 .btn-fill.btn-danger {
   background-color: #FF3B30;
