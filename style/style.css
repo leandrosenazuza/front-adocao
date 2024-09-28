@@ -5,22 +5,26 @@
     box-sizing: border-box;
 }
 
+.body {
+    font-family: 'Roboto', sans-serif;
+    background-size: contain;
+    background-image: url('/Images/fundo2.png');
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+}
+
 .container-body {
-    width: 1440px;
+    min-height: 100vh;
+    max-width: 1440px;
     display: block;
     margin-left: auto;
     margin-right: auto; 
-}
-
-
-body {
-    font-family: 'Roboto', sans-serif;
-    overflow-x: hidden; 
-    background-image: url('/Images/fundo2.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 100%;
-    overflow: hidden;
 }
 
 header {
@@ -29,6 +33,10 @@ header {
     align-items: center;
     padding: 20px 40px;
     position: relative;
+}
+
+.header {
+    width: 100vw;
 }
 
 .logo img {
@@ -67,9 +75,8 @@ nav ul li a:hover {
 .container-hero-stats {
     display: flex;
     align-items: center;
-    margin-top: -125px;
     justify-content: center;
-    
+    margin-top: -125px;
 
 }
 .container-hero {
@@ -162,3 +169,57 @@ nav ul li a:hover {
     opacity: 20%;
    
 }*/ 
+
+
+/* Pagina Sobre Nós */
+
+.banner-sobre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    border: #333 1px solid;
+    padding-left: 20px;
+    border-radius: 25px;
+    margin-top: 10px;
+    /*background-image: url('/Images/catdog.png');*/
+    background-size: contain;
+    background-position: -25px;
+    background-position-x: right;
+    background-repeat: no-repeat;
+    filter: drop-shadow(-1px 2px 2px #737373);
+}
+
+.banner-text {
+    width: 40%;
+}
+
+.banner-title {
+    font-size: 48px;
+    color: #333;
+}
+
+.banner-text {
+    font-size: 18px;
+    color: #333;
+    width: 80%;
+    
+}
+
+.cor-vermelha {
+    color:#f42121;
+}
+
+.banner-image {
+    width: 60%;
+    /*background-image: url('/Images/gato.jpg');*/
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.banner-img {
+    width: 127%;
+    
+}
+

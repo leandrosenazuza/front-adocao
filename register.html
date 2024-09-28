@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="/Images/icone-pata-amada.png">
+	<link rel="icon" type="image/png" href="/Images/icone-pata-amada-96x-96.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>Cadastro Usuário</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+	<!--     Fonts and icons     -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+
+	<!-- CSS Files -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
+
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="assets/css/demo.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style/style2.css">
+</head>
+
+<body class="body">
+<div class="image-container set-full-height" style="background-image: url('/Images/caes-gatos.jpg'); background-position: top;">
+    <!--   Creative Tim Branding   -->
+    <div class="homepage-register">
+        <div class="navbar">
+            <header class="header container">
+                <div class="container-nav container">
+                    <div class="logo">
+                        <img class="logotipo" src="Images/logoPata.png" alt="Pata Amada Logo">
+                    </div>
+            
+                    <nav>
+                        <ul>
+                            <li><a href="/index2.html">home</a></li>
+                            <li><a href="/sobre.html">sobre nós</a></li>
+                            <li><a href="#adopt">adote um amigo</a></li>
+                            <li><a href="#donatePet">doe um pet</a></li>
+                            <li><a href="#donate">faça uma doação</a></li>
+                            <li><a href="/register.html">Login</a></li>
+                        </ul>
+                    </nav>
+                </div><!--container-->
+            </header>
+        </div><!--navbar-->
+    </div>
+
+	<!--  Made With Get Shit Done Kit  -->
+		<a href="https://univesp.br/" class="made-with-mk">
+			<div class="brand">PI</div>
+			<div class="made-with">Projeto Integrador II - <strong>UNIVESP 2024</strong></div>
+		</a>
+
+    <!--   Big container   -->
+    <div class="container">
+        <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+
+            <!--      Wizard container        -->
+            <div class="wizard-container">
+
+                <div class="card wizard-card" data-color="red" id="wizardProfile">
+                    <form action="" method="">
+                <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
+
+                    	<div class="wizard-header">
+                        	<h3>
+                        	   <b>FAÇA</b> SEU CADASTRO <br>
+                        	   <small>Queremos saber um pouco mais de você.</small>
+                        	</h3>
+                    	</div>
+
+						<div class="wizard-navigation">
+							<ul>
+	                            <li><a href="#about" data-toggle="tab">Sobre</a></li>
+	                            <li><a href="#account" data-toggle="tab">Conta</a></li>
+	                            <li><a href="#address" data-toggle="tab">Endereço</a></li>
+	                        </ul>
+
+						</div>
+
+                        <div class="tab-content">
+                            <div class="tab-pane" id="about">
+                              <div class="row">
+                                  <h4 class="info-text"> Vamos começar com as informações básicas</h4>
+                                  <div class="col-sm-4 col-sm-offset-1">
+                                     <div class="picture-container">
+                                          <div class="picture">
+                                              <img src="assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>
+                                              <input type="file" id="wizard-picture">
+                                          </div>
+                                          <h6>Escolha uma Foto</h6>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label>Nome <small>(obrigatório)</small></label>
+                                        <input name="firstname" type="text" class="form-control" placeholder="Nome...">
+                                      </div>
+                                      <div class="form-group">
+                                        <label>Sobrenome <small>(obrigatório)</small></label>
+                                        <input name="lastname" type="text" class="form-control" placeholder="Sobrenome...">
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-10 col-sm-offset-1">
+                                      <div class="form-group">
+                                          <label>Email <small>(obrigatório)</small></label>
+                                          <input name="email" type="email" class="form-control" placeholder="email">
+                                      </div>
+                                  </div>
+
+                                  <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="form-group">
+                                        <label>Crie a sua senha <small>(obrigatório)</small></label>
+                                        <input name="password" type="password" class="form-control" placeholder="Digite a sua senha">
+                                    </div>
+                                </div>
+
+                              </div>
+                            </div>
+                            <div class="tab-pane" id="account">
+                                <h4 class="info-text"> Escolha o perfil (checkboxes) </h4>
+                                <div class="row">
+
+                                    <div class="col-sm-10 col-sm-offset-1">
+                                        <div class="col-sm-4">
+                                            <div class="choice" data-toggle="wizard-checkbox">
+                                                <input type="checkbox" name="jobb" value="Adoção">
+                                                <div class="icon">
+                                                    <i class="fa-solid fa-dog"></i>
+                                                </div>
+                                                <h6>Adoção</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="choice" data-toggle="wizard-checkbox">
+                                                <input type="checkbox" name="jobb" value="Doação">
+                                                <div class="icon">
+                                                    <i class="fa-solid fa-cat"></i>
+                                                </div>
+                                                <h6>Doação</h6>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="choice" data-toggle="wizard-checkbox">
+                                                <input type="checkbox" name="jobb" value="Hospedagem">
+                                                <div class="icon">
+                                                    <i class="fa-solid fa-paw"></i>
+                                                </div>
+                                                <h6>Hospedagem</h6>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="address">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="info-text"> Onde você mora? </h4>
+                                    </div>
+                                    <div class="col-sm-7 col-sm-offset-1">
+                                         <div class="form-group">
+                                            <label>Logradouro</label>
+                                            <input type="text" class="form-control" placeholder="Rua, Avenida...">
+                                          </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                         <div class="form-group">
+                                            <label>Número</label>
+                                            <input type="text" class="form-control" placeholder="242">
+                                          </div>
+                                    </div>
+                                    <div class="col-sm-5 col-sm-offset-1">
+                                         <div class="form-group">
+                                            <label>Cidade</label>
+                                            <input type="text" class="form-control" placeholder="Ribeirão Preto...">
+                                          </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                         <div class="form-group">
+                                            <label>Estado</label><br>
+                                             <select name="country" class="form-control">
+                                                <option value="Acre"> Acre </option>
+                                                <option value="Alagoas"> Alagoas </option>
+                                                <option value="Amapá"> Amapá </option>
+                                                <option value="Amazonas"> Amazonas </option>
+                                                <option value="Bahia"> Bahia </option>
+                                                <option value="Ceará"> Ceará </option>
+                                                <option value="Distrito Federal"> Distrito Federal </option>
+                                                <option value="Espírito Santo"> Espírito Santo </option>
+                                                <option value="Goiás">Goiás</option>
+                                                <option value="Maranhão">Maranhão</option>
+                                                <option value="Mato Grosso">Mato Grosso</option>
+                                                <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+                                                <option value="Minas Gerais">Minas Gerais</option>
+                                                <option value="Pará">Pará</option>
+                                                <option value="Paraíba">Paraíba</option>
+                                                <option value="Paraná">Paraná</option>
+                                                <option value="Pernambuco">Pernambuco</option>
+                                                <option value="Piauí">Piauí</option>
+                                                <option value="Rio de Janeiro">Rio de Janeiro</option>
+                                                <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+                                                <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+                                                <option value="Rondônia">Rondônia</option>
+                                                <option value="Roraima">Roraima</option>
+                                                <option value="Santa Catarina">Santa Catarina</option>
+                                                <option value="São Paulo">São Paulo</option>
+                                                <option value="Sergipe">Sergipe</option>
+                                                <option value="Tocantins">Tocantins</option>
+                                            </select>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wizard-footer height-wizard">
+                            <div class="pull-right">
+                                <input type='button' class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Próximo' />
+                                <input type='button' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Finalizar' />
+
+                            </div>
+
+                            <div class="pull-left">
+                                <input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous' value='Anterior' />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </form>
+                </div>
+            </div> <!-- wizard container -->
+        </div>
+        </div><!-- end row -->
+    </div> <!--  big container -->
+
+
+</div>
+
+</body>
+
+	<!--   Core JS Files   -->
+	<script src="assets/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+
+	<!--  Plugin for the Wizard -->
+	<script src="assets/js/gsdk-bootstrap-wizard.js"></script>
+
+	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+	<script src="assets/js/jquery.validate.min.js"></script>
+
+</html>
