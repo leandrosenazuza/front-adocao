@@ -153,18 +153,18 @@
                         const cardContainer = document.getElementById('card-container');
                         cardContainer.innerHTML = ''; 
 
-                        data.forEach((gato) => {
+                        data.forEach((animal) => {
                             const cardHTML = `
             <div class="card-container">
                 <div class="card">
                     <div class="front">
                         <div class="cover">
-                            <img src="${gato.foto}" alt="Imagem do gato"/>
+                            <img src="${animal.foto}" alt="Imagem do gato"/>
                         </div>
                         <div class="content">
                             <div class="main">
-                                <p class="name">Nome: ${gato.nome}</p>
-                                <h3 class="idade">Idade: ${gato.idade}</h3>
+                                <p class="name">Nome: ${animal.nome}</p>
+                                <h3 class="idade">Idade: ${animal.idade}</h3>
                             </div>
                             <div class="footer">
                                 <div class="rating">
@@ -177,18 +177,18 @@
                         <div class="content">
                             <div class="main">
                                 <h4 class="text-center">Histórico</h4>
-                                <p class="text-center">${gato.descricaoAnimal}</p>
+                                <p class="text-center">${animal.descricaoAnimal}</p>
                                 <div class="stats-container">
                                     <div class="stats2">
-                                        <h4 class="sim">${gato.isVermifugado ? 'Sim' : 'Não'}</h4>
+                                        <h4 class="sim">${animal.isVermifugado ? 'Sim' : 'Não'}</h4>
                                         <p>Vermifugado</p>
                                     </div>
                                     <div class="stats2">
-                                        <h4 class="sim">${gato.isVacinado ? 'Sim' : 'Não'}</h4>
+                                        <h4 class="sim">${animal.isVacinado ? 'Sim' : 'Não'}</h4>
                                         <p>Vacinado</p>
                                     </div>
                                     <div class="stats2">
-                                        <h4 class="sim">${gato.isCastrado ? 'Sim' : 'Não'}</h4>
+                                        <h4 class="sim">${animal.isCastrado ? 'Sim' : 'Não'}</h4>
                                         <p>Castrado</p>
                                     </div>
                                 </div>
