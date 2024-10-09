@@ -3,14 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pata Amada - Home</title>
+    <title>Pata Amada - Adote</title>
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <style>
+        /* Adicione seu CSS aqui */
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center; /* Centraliza verticalmente */
+            min-height: 100vh; /* Ocupa toda a altura da janela */
+            overflow-y: auto; /* Adiciona rolagem vertical se necessário */
+        }
 
+        .container-body {
+            text-align: center; /* Centraliza o texto no contêiner */
+            max-width: 800px; /* Limita a largura do contêiner */
+            padding: 20px; /* Espaçamento interno */
+        }
 
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Espaçamento entre os cards */
+            padding: 20px;
+            justify-content: center; /* Centraliza os cards no contêiner */
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            width: 200px; /* Largura fixa para os cards */
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .card img {
+            width: 100%; /* A imagem ocupa a largura total do card */
+            height: auto; /* Mantém a proporção da imagem */
+            border-radius: 8px 8px 0 0; /* Bordas arredondadas na parte superior */
+        }
+
+        .adopt-button {
+            display: inline-block; /* Para que o botão seja tratado como um bloco */
+            margin-top: 10px; /* Espaçamento acima do botão */
+            padding: 10px 20px; /* Espaçamento interno do botão */
+            background-color: #4CAF50; /* Cor de fundo verde */
+            color: white; /* Cor do texto do botão */
+            border: none; /* Remove bordas do botão */
+            border-radius: 5px; /* Bordas arredondadas */
+            cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+            text-decoration: none; /* Remove underline de links */
+        }
+
+        .adopt-button:hover {
+            background-color: #45a049; /* Cor do botão ao passar o mouse */
+        }
+    </style>
 </head>
-<body class="body bodyhome">
-    <div class="container-body container-home">
+<body class="body bodyadote">
+    <div class="container-body container-adote">
         <header>
             <div class="logo">
                 <img src="Images/logoPata.png" alt="Pata Amada Logo">
@@ -25,10 +79,30 @@
                 </ul>
             </nav>
         </header>
-    
-    </div><!--container-->
-</body>
-<script src="/js/jquery.js"></script>
-<script src="/js/script.js"></script>
 
+        <main>
+            <h1>Animais Disponíveis para Adoção</h1>
+            <div id="card-container" class="card-container">
+                <!-- Exemplo de Card -->
+                <div class="card">
+                    <img src="Images/animal1.jpg" alt="Animal 1">
+                    <h2>Nome do Animal</h2>
+                    <p>Descrição do animal disponível para adoção.</p>
+                    <a href="#" class="adopt-button">Quero adotar!</a>
+                </div>
+                <!-- Adicione mais cards conforme necessário -->
+                <div class="card">
+                    <img src="Images/animal2.jpg" alt="Animal 2">
+                    <h2>Nome do Animal</h2>
+                    <p>Descrição do animal disponível para adoção.</p>
+                    <a href="#" class="adopt-button">Quero adotar!</a>
+                </div>
+                <!-- Continue adicionando cards aqui -->
+            </div>
+        </main>
+    </div><!--container-->
+
+    <script src="/js/jquery.js"></script>
+    <script type="module" src="js/animal.js"></script> <!-- Adicione o caminho do seu script que fará a chamada -->
+</body>
 </html>
