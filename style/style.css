@@ -244,4 +244,72 @@ nav ul li:hover a {
     background-color: #0056b3;
 }
 
+/*
+--------------------------------------------------------------------------------
+*/
+
+/*Adote*/
+
+.titulo{
+    text-align: center;
+}
+
+#animalGallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.animal-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    overflow: hidden;
+    width: 30%; 
+    color: #333;
+    transition: transform 0.2s; /* Adiciona uma transição suave para o efeito de hover */
+}
+
+.animal-card:hover {
+    transform: translateY(-10px); /* Efeito de elevação ao passar o mouse */
+}
+
+.animal-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.animal-card .content {
+    padding: 15px;
+}
+
+.animal-card h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+}
+
+.animal-card p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.botao-adotar {
+    background-color: #4CAF50; /* Verde */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 /*cadastro_animais*/

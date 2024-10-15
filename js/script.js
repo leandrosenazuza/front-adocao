@@ -223,3 +223,64 @@ function limparFormulario() {
     document.getElementById('descricaoAnimal').value = '';
     document.getElementById('foto').value = '';
 }
+
+/*
+*****************************************************************************
+*/
+
+/* adote */
+
+/* script_adote.js */
+document.addEventListener('DOMContentLoaded', () => {
+    carregarAnimais();
+});
+
+function carregarAnimais() {
+    fetch('http://localhost:8080/animal/get/all')
+        .then(response => response.json())
+        .then(animais => {
+            const animalGallery = document.getElementById('animalGallery');
+            animalGallery.innerHTML = '';
+
+            animais.forEach(animal => {
+                const card = document.createElement('div');
+                card.classList.add('animal-card');
+
+                const img = document.createElement('img');
+                img.src = animal.foto || 'placeholder.jpg';
+                img.alt = animal.nome;
+                card.appendChild(img);
+
+                const content = document.createElement('div');
+                content.classList.add('content');
+                content.innerHTML = `
+                    <h3>${animal.nome}</h3>
+                    <p>Idade: ${animal.idade} anos</p>
+                    <p>Raça: ${animal.raca.descricaoRaca}</p>
+                    <p>Comportamento: ${animal.comportamento.descricaoComportamento}</p>
+                    <p>Cirurgia: ${animal.cirurgia ? animal.cirurgia.descricaoCirurgia : '-'}</p>
+                    <p>Castrado: ${animal.isCastrado ? 'Sim' : 'Não'}</p>
+                    <p>Vermifugado: ${animal.isVermifugado ? 'Sim' : 'Não'}</p>
+                    <p>Vacinado: ${animal.isVacinado ? 'Sim' : 'Não'}</p>
+                    <p>Cirurgia Realizada: ${animal.isCirurgia ? 'Sim' : 'Não'}</p>
+                    <p>${animal.descricaoAnimal}</p>
+                `;
+
+                const botaoAdotar = document.createElement('button');
+                botaoAdotar.classList.add('botao-adotar');
+                botaoAdotar.textContent = 'Quero Adotar!';
+                botaoAdotar.addEventListener('click', () => {
+                    alert(`Você quer adotar o(a) ${animal.nome}! Entre em contato conosco!`);
+                });
+                content.appendChild(botaoAdotar);
+
+                card.appendChild(content);
+                animalGallery.appendChild(card);
+            });
+        })
+        .catch(error => {
+            console.error('Erro ao carregar animais:', error);
+            const animalGallery = document.getElementById('animalGallery');
+            animalGallery.innerHTML = '<p>Erro ao carregar os animais. Por favor, tente novamente mais tarde.</p>';
+        });
+}
