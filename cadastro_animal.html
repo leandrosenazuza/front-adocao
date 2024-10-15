@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Animais</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+</head>
+<body class="body body_cadastro_animais">
+    <div class="container-body container-home">
+        <header>
+            <div class="logo">
+                <img src="Images/logoPata.png" alt="Pata Amada Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/index.html"><b>Home</b></a></li>
+                    <li><a href="/sobre.html"><b>Sobre</b></a></li>
+                    <li><a href="/adote.html"><b>Adote</b></a></li>
+                    <li><a href="/doe.html"><b>Doe</b></a></li>
+                    <li><a href="/login.html"><b>Login</b></a></li>
+                </ul>
+            </nav>
+        </header>
+
+    <h1>Cadastro de Animais</h1>
+
+    <div id="animalForm">
+        <h2>Cadastrar Animal</h2>
+        <form id="formAnimal">
+            <input type="hidden" id="animalId"> <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required><br>
+
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" name="idade" required><br>
+
+            <label for="raca">Raça:</label>
+            <select id="raca" name="racaId" required></select><br>
+
+            <label for="comportamento">Comportamento:</label>
+            <select id="comportamento" name="comportamentoId" required></select><br>
+
+            <label for="cirurgia">Cirurgia:</label>
+            <select id="cirurgia" name="cirurgiaId"></select><br>
+
+            <input type="checkbox" id="isCastrado" name="isCastrado">
+            <label for="isCastrado">Castrado</label><br>
+
+            <input type="checkbox" id="isVermifugado" name="isVermifugado">
+            <label for="isVermifugado">Vermifugado</label><br>
+
+            <input type="checkbox" id="isVacinado" name="isVacinado">
+            <label for="isVacinado">Vacinado</label><br>
+
+            <input type="checkbox" id="isCirurgia" name="isCirurgia">
+            <label for="isCirurgia">Cirurgia Realizada</label><br>
+
+            <label for="descricaoAnimal">Descrição:</label><br>
+            <textarea id="descricaoAnimal" name="descricaoAnimal"></textarea><br>
+
+            <label for="foto">Foto (URL):</label>
+            <input type="text" id="foto" name="foto"><br>
+
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+
+    <div id="animalList">
+        <h2>Lista de Animais</h2>
+        <table id="tabelaAnimais">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Raça</th>
+                    <th>Comportamento</th>
+                    <th>Cirurgia</th>
+                    <th>Castrado</th>
+                    <th>Vermifugado</th>
+                    <th>Vacinado</th>
+                    <th>Cirurgia Realizada</th>
+                    <th>Descrição</th>
+                    <th>Foto</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
+</body>
+</html>
