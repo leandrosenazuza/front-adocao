@@ -233,24 +233,42 @@ function limparFormulario() {
 /* script_adote.js */
 document.addEventListener('DOMContentLoaded', () => {
     carregarAnimais();
+    carregarRacas();
+    carregarComportamentos();
+    carregarCirurgias();
+
+    document.getElementById('filtroEspecie').addEventListener('change', () => {
+        carregarAnimais();
+    });
 });
 
 function carregarAnimais() {
-    fetch('http://localhost:8080/animal/get/all')
+    const especieId = document.getElementById('filtroEspecie').value;
+    let url = 'http://localhost:8080/animal/get/all';
+
+    // Se uma espécie específica foi selecionada, altera a URL da requisição
+    if (especieId !== 'todos') {
+        url = `http://localhost:8080/animal/get/especie/${especieId}`; 
+    }
+
+    fetch(url)
         .then(response => response.json())
         .then(animais => {
             const animalGallery = document.getElementById('animalGallery');
-            animalGallery.innerHTML = '';
+            animalGallery.innerHTML = ''; // Limpa a galeria antes de adicionar os cards
 
             animais.forEach(animal => {
+                // Cria o card
                 const card = document.createElement('div');
                 card.classList.add('animal-card');
 
+                // Imagem
                 const img = document.createElement('img');
-                img.src = animal.foto || 'placeholder.jpg';
+                img.src = animal.foto || 'placeholder.jpg'; // Imagem de placeholder se não houver
                 img.alt = animal.nome;
                 card.appendChild(img);
 
+                // Conteúdo do Card
                 const content = document.createElement('div');
                 content.classList.add('content');
                 content.innerHTML = `
@@ -266,13 +284,15 @@ function carregarAnimais() {
                     <p>${animal.descricaoAnimal}</p>
                 `;
 
+                // Botão "Quero Adotar!"
                 const botaoAdotar = document.createElement('button');
                 botaoAdotar.classList.add('botao-adotar');
                 botaoAdotar.textContent = 'Quero Adotar!';
                 botaoAdotar.addEventListener('click', () => {
+                    // Lógica para lidar com o clique no botão (ex: abrir um modal)
                     alert(`Você quer adotar o(a) ${animal.nome}! Entre em contato conosco!`);
                 });
-                content.appendChild(botaoAdotar);
+                content.appendChild(botaoAdotar); 
 
                 card.appendChild(content);
                 animalGallery.appendChild(card);
@@ -283,4 +303,16 @@ function carregarAnimais() {
             const animalGallery = document.getElementById('animalGallery');
             animalGallery.innerHTML = '<p>Erro ao carregar os animais. Por favor, tente novamente mais tarde.</p>';
         });
+}
+
+function carregarRacas() {
+    // ... (implementação para carregar raças)
+}
+
+function carregarComportamentos() {
+    // ... (implementação para carregar comportamentos)
+}
+
+function carregarCirurgias() {
+    // ... (implementação para carregar cirurgias)
 }

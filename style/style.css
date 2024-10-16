@@ -312,4 +312,15 @@ nav ul li:hover a {
     cursor: pointer;
 }
 
+.filtroEspecie {
+    margin-left: 50px;
+}
+
+#filtroEspecie {
+    margin-top: 50px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 /*cadastro_animais*/
