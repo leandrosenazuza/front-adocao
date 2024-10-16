@@ -69,6 +69,22 @@ function fecharModalNovaEspecie() {
 
 function abrirModalNovaRaca() {
     document.getElementById('modalNovaRaca').style.display = 'block';
+    carregarEspeciesNoModalRaca();
+    carregarPortesNoModalRaca();
+}
+
+function carregarPortesNoModalRaca() {
+    fetch('http://localhost:8080/porte/get/all')
+        .then(response => response.json())
+        .then(portes => {
+            const selectPorteRaca = document.getElementById('porteRaca');
+            portes.forEach(porte => {
+                const option = document.createElement('option');
+                option.value = porte.id;
+                option.textContent = porte.descricaoPorte;
+                selectPorteRaca.appendChild(option);
+            });
+        });
 }
 
 function fecharModalNovaRaca() {
@@ -129,6 +145,7 @@ function salvarNovaEspecie() {
         console.log('Espécie criada:', novaEspecie);
         carregarEspecies(); // Atualiza o select de espécies
         fecharModalNovaEspecie();
+        alert('Espécie criada com Sucesso!');
     })
     .catch(error => {
         console.error('Erro ao criar espécie:', error);
@@ -139,11 +156,19 @@ function salvarNovaEspecie() {
 function salvarNovaRaca() {
     const descricaoRaca = document.getElementById('descricaoRaca').value;
     const especieId = parseInt(document.getElementById('especieRaca').value); // Converte para número
+    const porteId = parseInt(document.getElementById('porteRaca').value);
+
+    // Cria o objeto da raça com os IdDs de especie e porte
+    const novaRaca = {
+        descricaoRaca: descricaoRaca,
+        especie: {id: especieId},
+        porte: {id: porteId}
+    };
 
     fetch('http://localhost:8080/raca/criar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ descricaoRaca: descricaoRaca, especie: { id: especieId } })
+        body: JSON.stringify(novaRaca)
     })
     .then(response => {
         if (!response.ok) {
@@ -151,10 +176,11 @@ function salvarNovaRaca() {
         }
         return response.json();
     })
-    .then(novaRaca => {
-        console.log('Raça criada:', novaRaca);
+    .then(racaCriada => {
+        console.log('Raça criada:', racaCriada);
         carregarRacas(); // Atualiza o select de raças
         fecharModalNovaRaca();
+        alert('Raça Criada com sucesso!');
     })
     .catch(error => {
         console.error('Erro ao criar raça:', error);
@@ -179,6 +205,7 @@ function salvarNovoComportamento() {
         console.log('Comportamento criado:', novoComportamento);
         carregarComportamentos(); // Atualiza o select de comportamentos
         fecharModalNovoComportamento();
+        alert('Comportamento criado com sucesso!');
     })
     .catch(error => {
         console.error('Erro ao criar comportamento:', error);
@@ -203,6 +230,7 @@ function salvarNovaCirurgia() {
         console.log('Cirurgia criada:', novaCirurgia);
         carregarCirurgias(); // Atualiza o select de cirurgias
         fecharModalNovaCirurgia();
+        alert('Cirurgia criada com sucesso!');
     })
     .catch(error => {
         console.error('Erro ao criar cirurgia:', error);
@@ -376,6 +404,13 @@ function salvarAnimal() {
             console.log('Animal salvo com sucesso:', animalSalvo);
             carregarAnimais(); // Recarrega a lista de animais
             limparFormulario(); // Limpa o formulário
+
+            // Exibe o alerta de sucesso se o animalId existir (edição)
+            if (animalId) {
+                alert('Animal atualizado com sucesso!');
+            } else {
+                alert ('Animal criado com sucesso!'); // Mantém o alerta para criação
+            }
         })
         .catch(error => {
             console.error('Erro ao salvar animal:', error);
@@ -396,6 +431,7 @@ function preencherFormulario(animal) {
     document.getElementById('isCirurgia').checked = animal.isCirurgia;
     document.getElementById('descricaoAnimal').value = animal.descricaoAnimal;
     document.getElementById('foto').value = animal.foto;
+    document.getElementById('animalForm').scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
 function excluirAnimal(id) {
