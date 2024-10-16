@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -17,6 +16,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center; 
+    overflow-x: hidden;
 }
 
 .container-body {
@@ -242,4 +242,112 @@ nav ul li:hover a {
 
 .login-button:hover {
     background-color: #0056b3;
+}
+
+.wrapper-doe {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px;
+    gap: 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.form-container {
+    flex: 1;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 300px;
+}
+
+.form-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.form-container input, 
+.form-container textarea {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.form-container button {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+.qr-code-container {
+    flex: 0.4;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+   width: 50%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.qr-code-container h2 {
+    margin-left: auto;
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.qr-code-container p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.qr-code-container img {
+    max-width: fit-content;
+    display: center;
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+    
+}
+.wrapper-doe {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    width: 50%; 
+    margin: 0 auto;
+    flex-wrap: wrap; 
+}
+.form-wapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
