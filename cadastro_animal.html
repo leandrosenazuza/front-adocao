@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Animais</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+</head>
+<body class="body body_cadastro_animais">
+<div class="container-body container-home">
+    <header>
+        <div class="logo">
+            <img src="Images/logoPata.png" alt="Pata Amada Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/index.html"><b>Home</b></a></li>
+                <li><a href="/sobre.html"><b>Sobre</b></a></li>
+                <li><a href="/adote.html"><b>Adote</b></a></li>
+                <li><a href="/doe.html"><b>Doe</b></a></li>
+                <li><a href="/login.html"><b>Login</b></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Cadastro de Animais</h1>
+
+    <div id="animalForm">
+        <h2>Cadastrar Animal</h2>
+        <form id="formAnimal">
+            <div class="form-grid"> 
+                <input type="hidden" id="animalId">
+        
+                <div class="coluna"> 
+                    <label for="especie">Espécie:</label>
+                    <select id="especie" name="especieId" required>
+                    </select>
+                    <button type="button" id="btnNovaEspecie">Nova Espécie</button><br><br>
+        
+                    <label for="raca">Raça:</label>
+                    <select id="raca" name="racaId" required>
+                    </select>
+                    <button type="button" id="btnNovaRaca">Nova Raça</button><br><br>
+        
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required><br>
+        
+                    <label for="idade">Idade:</label>
+                    <input type="number" id="idade" name="idade" required><br>
+        
+                    <label for="comportamento">Comportamento:</label>
+                    <select id="comportamento" name="comportamentoId" required></select>
+                    <button type="button" id="btnNovoComportamento">Novo Comportamento</button><br><br>
+                </div>
+        
+                <div class="coluna">
+                    <label for="cirurgia">Cirurgia:</label>
+                    <select id="cirurgia" name="cirurgiaId"></select>
+                    <button type="button" id="btnNovaCirurgia">Nova Cirurgia</button><br><br>
+        
+                    <input type="checkbox" id="isCastrado" name="isCastrado">
+                    <label for="isCastrado">Castrado</label><br>
+        
+                    <input type="checkbox" id="isVermifugado" name="isVermifugado">
+                    <label for="isVermifugado">Vermifugado</label><br>
+        
+                    <input type="checkbox" id="isVacinado" name="isVacinado">
+                    <label for="isVacinado">Vacinado</label><br>
+        
+                    <input type="checkbox" id="isCirurgia" name="isCirurgia">
+                    <label for="isCirurgia">Cirurgia Realizada</label><br>
+        
+                    <label for="descricaoAnimal">Descrição:</label><br>
+                    <textarea id="descricaoAnimal" name="descricaoAnimal"></textarea><br>
+        
+                    <label for="foto">Foto (URL):</label>
+                    <input type="text" id="foto" name="foto"><br>
+                </div>
+            </div> 
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+
+    <div id="animalList">
+        <h2>Lista de Animais</h2>
+
+        <div id="animalGallery">
+            <!-- Os cards dos animais serão inseridos aqui -->
+        </div>
+    </div>
+</div>
+
+<!-- Modais -->
+<!-- Modal para Nova Espécie -->
+<div id="modalNovaEspecie" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="fecharModalNovaEspecie()">×</span>
+        <h2>Nova Espécie</h2>
+        <form id="formNovaEspecie">
+            <label for="descricaoEspecie">Descrição:</label>
+            <input type="text" id="descricaoEspecie" name="descricaoEspecie" required>
+            <button type="submit">Salvar Espécie</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal para Nova Raça -->
+<div id="modalNovaRaca" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="fecharModalNovaRaca()">×</span>
+        <h2>Nova Raça</h2>
+        <form id="formNovaRaca">
+            <label for="descricaoRaca">Descrição:</label>
+            <input type="text" id="descricaoRaca" name="descricaoRaca" required>
+            <label for="especieRaca">Espécie:</label>
+            <select id="especieRaca" name="especieId" required></select>
+
+            <label for="porteRaca">Porte:</label> <select id="porteRaca" name="porteId" required></select> <button type="submit">Salvar Raça</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal para Novo Comportamento -->
+<div id="modalNovoComportamento" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="fecharModalNovoComportamento()">×</span>
+        <h2>Novo Comportamento</h2>
+        <form id="formNovoComportamento">
+            <label for="descricaoComportamento">Descrição:</label>
+            <input type="text" id="descricaoComportamento" name="descricaoComportamento" required>
+            <button type="submit">Salvar Comportamento</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal para Nova Cirurgia -->
+<div id="modalNovaCirurgia" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="fecharModalNovaCirurgia()">×</span>
+        <h2>Nova Cirurgia</h2>
+        <form id="formNovaCirurgia">
+            <label for="descricaoCirurgia">Descrição:</label>
+            <input type="text" id="descricaoCirurgia" name="descricaoCirurgia" required>
+            <button type="submit">Salvar Cirurgia</button>
+        </form>
+    </div>
+</div>
+
+<script src="js/script_cadastro_animal.js"></script>
+</body>
+</html>
