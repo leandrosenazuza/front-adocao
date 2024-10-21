@@ -1,27 +1,32 @@
+/**
+ * Script para gerenciar o cadastro de animais, incluindo interação com o backend e manipulação de modais.
+ */
 document.addEventListener('DOMContentLoaded', () => {
     carregarEspecies();
     carregarAnimais();
     carregarComportamentos();
     carregarCirurgias();
-    carregarRacas(); // Carrega todas as raças inicialmente
-    carregarSexos(); // Carrega as opções de sexo
+    carregarRacas();
+    carregarSexos(); 
 
-    // Adiciona evento de submit ao formulário para salvar o animal
+    // Adiciona evento de submit ao formulário de cadastro de animal
     document.getElementById('formAnimal').addEventListener('submit', (event) => {
         event.preventDefault();
         salvarAnimal();
     });
 
-    // Adiciona evento de mudança ao select de espécie
+    // Adiciona evento de mudança ao select de espécie para carregar as raças correspondentes
     document.getElementById('especie').addEventListener('change', () => {
         carregarRacasPorEspecie();
     });
 
     //  --MODAL--
+    // Adiciona ouvintes de eventos para abrir os modais
     document.getElementById('btnNovaEspecie').addEventListener('click', abrirModalNovaEspecie);
     document.getElementById('btnNovaRaca').addEventListener('click', () => {
         abrirModalNovaRaca();
         carregarEspeciesNoModalRaca();
+        carregarPortesNoModalRaca(); // Carrega os portes no modal de nova raça
     });
     document.getElementById('btnNovoComportamento').addEventListener('click', abrirModalNovoComportamento);
     document.getElementById('btnNovaCirurgia').addEventListener('click', abrirModalNovaCirurgia);
@@ -86,6 +91,9 @@ function fecharModalNovaCirurgia() {
     document.getElementById('formNovaCirurgia').reset();
 }
 
+/**
+ * Carrega as espécies disponíveis no modal de criação de raça.
+ */
 function carregarEspeciesNoModalRaca() {
     fetch('http://localhost:8080/especie/get/all')
         .then(response => response.json())
@@ -102,6 +110,9 @@ function carregarEspeciesNoModalRaca() {
         });
 }
 
+/**
+ * Carrega os portes disponíveis no modal de criação de raça.
+ */
 function carregarPortesNoModalRaca() {
     fetch('http://localhost:8080/porte/get/all')
         .then(response => response.json())
@@ -118,6 +129,9 @@ function carregarPortesNoModalRaca() {
 
 // --- FUNÇÕES PARA SALVAR ---
 
+/**
+ * Salva uma nova espécie no backend.
+ */
 function salvarNovaEspecie() {
     const descricaoEspecie = document.getElementById('descricaoEspecie').value;
 
@@ -144,6 +158,9 @@ function salvarNovaEspecie() {
     });
 }
 
+/**
+ * Salva uma nova raça no backend.
+ */
 function salvarNovaRaca() {
     const descricaoRaca = document.getElementById('descricaoRaca').value;
     const especieId = parseInt(document.getElementById('especieRaca').value);
@@ -178,6 +195,9 @@ function salvarNovaRaca() {
     });
 }
 
+/**
+ * Salva um novo comportamento no backend.
+ */
 function salvarNovoComportamento() {
     const descricaoComportamento = document.getElementById('descricaoComportamento').value;
     fetch('http://localhost:8080/comportamento/criar', {
@@ -203,6 +223,9 @@ function salvarNovoComportamento() {
     });
 }
 
+/**
+ * Salva uma nova cirurgia no backend.
+ */
 function salvarNovaCirurgia() {
     const descricaoCirurgia = document.getElementById('descricaoCirurgia').value;
     fetch('http://localhost:8080/cirurgia/criar', {
@@ -230,6 +253,9 @@ function salvarNovaCirurgia() {
 
 // --- FUNÇÕES PARA CARREGAR ---
 
+/**
+ * Carrega a lista de animais do backend e exibe em cards.
+ */
 function carregarAnimais() {
     fetch('http://localhost:8080/animal/get/all')
         .then(response => response.json())
@@ -245,6 +271,9 @@ function carregarAnimais() {
 
 // --- LISTA DE RAÇAS ---
 
+/**
+ * Carrega a lista de raças do backend e preenche o select.
+ */
 function carregarRacas() {
     fetch('http://localhost:8080/raca/get/all')
         .then(response => response.json())
@@ -269,11 +298,14 @@ function carregarRacas() {
         });
 }
 
+/**
+ * Carrega as raças do backend, filtradas pela espécie selecionada, e as exibe no select.
+ */
 function carregarRacasPorEspecie() {
     const especieId = parseInt(document.getElementById('especie').value); 
     const selectRaca = document.getElementById('raca');
 
-    selectRaca.innerHTML = '<option value="">Selecione</option>'; // Limpa e adiciona a opção padrão
+    selectRaca.innerHTML = '<option value="">Selecione</option>'; 
 
     if (especieId === '') {
         return;
@@ -283,7 +315,6 @@ function carregarRacasPorEspecie() {
         .then(response => response.json())
         .then(racas => {
 
-            //Ordena as raças em ordem alfabética
             racas.sort((a, b) => a.descricaoRaca.localeCompare(b.descricaoRaca));
 
             const racasDaEspecie = racas.filter(raca => raca.especie.id === especieId);
@@ -310,6 +341,10 @@ function carregarRacasPorEspecie() {
         });
 }
 
+/**
+ * Exclui uma raça do backend.
+ * @param {number} racaId - O ID da raça a ser excluída.
+ */
 function excluirRaca(racaId) {
     fetch(`http://localhost:8080/raca/delete/${racaId}`, {
         method: 'DELETE'
@@ -331,21 +366,8 @@ function excluirRaca(racaId) {
 // --- FIM DA LISTA DE RAÇAS ---
 
 /**
- * Carrega as opções de sexo no select.
+ * Carrega a lista de comportamentos do backend e preenche o select.
  */
-function carregarSexos() {
-    const selectSexo = document.getElementById('sexo');
-    selectSexo.innerHTML = '<option value="">Selecione</option>'; 
-
-    const sexos = ['Macho', 'Fêmea']; 
-    sexos.forEach(sexo => {
-        const option = document.createElement('option');
-        option.value = sexo;
-        option.textContent = sexo;
-        selectSexo.appendChild(option);
-    });
-}
-
 function carregarComportamentos() {
     fetch('http://localhost:8080/comportamento/get/all')
         .then(response => response.json())
@@ -366,6 +388,9 @@ function carregarComportamentos() {
         .catch(error => console.error('Erro ao carregar comportamentos:', error));
 }
 
+/**
+ * Carrega a lista de cirurgias do backend e preenche o select.
+ */
 function carregarCirurgias() {
     fetch('http://localhost:8080/cirurgia/get/all')
         .then(response => response.json())
@@ -387,6 +412,9 @@ function carregarCirurgias() {
         .catch(error => console.error('Erro ao carregar cirurgias:', error));
 }
 
+/**
+ * Salva um novo animal ou atualiza um animal existente.
+ */
 function salvarAnimal() {
     const animalId = document.getElementById('animalId').value;
     const nome = document.getElementById('nome').value;
@@ -468,6 +496,10 @@ function salvarAnimal() {
         });
 }
 
+/**
+ * Preenche o formulário com os dados do animal a ser editado.
+ * @param {Object} animal - Objeto contendo os dados do animal.
+ */
 function preencherFormulario(animal) {
     document.getElementById('animalId').value = animal.id;
     document.getElementById('nome').value = animal.nome;
@@ -485,6 +517,10 @@ function preencherFormulario(animal) {
     document.getElementById('animalForm').scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
+/**
+ * Exclui um animal do backend.
+ * @param {number} id - ID do animal a ser excluído.
+ */
 function excluirAnimal(id) {
     fetch(`http://localhost:8080/animal/delete/${id}`, {
         method: 'DELETE'
@@ -502,6 +538,9 @@ function excluirAnimal(id) {
         });
 }
 
+/**
+ * Limpa os campos do formulário de cadastro de animais.
+ */
 function limparFormulario() {
     document.getElementById('animalId').value = '';
     document.getElementById('nome').value = '';
@@ -519,18 +558,18 @@ function limparFormulario() {
 }
 
 /**
- * Carrega a lista de espécies do backend e preenche o select.
+ * Carrega a lista de espécies do backend e preenche o select de espécies.
  */
 function carregarEspecies() {
     fetch('http://localhost:8080/especie/get/all')
         .then(response => response.json())
         .then(especies => {
 
-            //ordena as especies em ordem alfabetica
+            // Ordena as espécies em ordem alfabética
             especies.sort((a, b) => a.descricaoEspecie.localeCompare(b.descricaoEspecie));
 
             const selectEspecie = document.getElementById('especie');
-            selectEspecie.innerHTML = '<option value="">Selecione</option>'; // Limpa o select de espécies antes de adicionar as opções
+            selectEspecie.innerHTML = '<option value="">Selecione</option>';
 
             especies.forEach(especie => {
                 const option = document.createElement('option');
