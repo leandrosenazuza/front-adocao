@@ -35,14 +35,25 @@
                 <div class="coluna"> 
                     <label for="especie">Espécie:</label>
                     <select id="especie" name="especieId" required>
+                        <option value="">Selecione</option>
                     </select>
                     <button type="button" id="btnNovaEspecie">Nova Espécie</button><br><br>
         
                     <label for="raca">Raça:</label>
                     <select id="raca" name="racaId" required>
+                        <option value="">Selecione</option> 
                     </select>
                     <button type="button" id="btnNovaRaca">Nova Raça</button><br><br>
-        
+                    
+                    <div class="coluna">
+                        <label for="sexo">Sexo</label>
+                        <select id="sexo" name="sexo" required>
+                            <option value="">Selecione</option>
+                            <option value="MACHO">Macho</option>
+                            <option value="FEMEA">Fêmea</option>
+                        </select><br><br>
+                    </div><!--coluna-->
+
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" required><br>
         
@@ -50,13 +61,17 @@
                     <input type="number" id="idade" name="idade" required><br>
         
                     <label for="comportamento">Comportamento:</label>
-                    <select id="comportamento" name="comportamentoId" required></select>
+                    <select id="comportamento" name="comportamentoId" required>
+                        <option value="">Selecione</option> 
+                    </select>
                     <button type="button" id="btnNovoComportamento">Novo Comportamento</button><br><br>
                 </div>
         
                 <div class="coluna">
                     <label for="cirurgia">Cirurgia:</label>
-                    <select id="cirurgia" name="cirurgiaId"></select>
+                    <select id="cirurgia" name="cirurgiaId">
+                        <option value="">Selecione</option>
+                    </select>
                     <button type="button" id="btnNovaCirurgia">Nova Cirurgia</button><br><br>
         
                     <input type="checkbox" id="isCastrado" name="isCastrado">
@@ -115,8 +130,9 @@
             <input type="text" id="descricaoRaca" name="descricaoRaca" required>
             <label for="especieRaca">Espécie:</label>
             <select id="especieRaca" name="especieId" required></select>
-
-            <label for="porteRaca">Porte:</label> <select id="porteRaca" name="porteId" required></select> <button type="submit">Salvar Raça</button>
+            <label for="porteRaca">Porte:</label>
+            <select id="porteRaca" name="porteId" required></select>
+            <button type="submit">Salvar Raça</button>
         </form>
     </div>
 </div>
@@ -146,6 +162,7 @@
         </form>
     </div>
 </div>
+
 
 <script src="js/script_cadastro_animal.js"></script>
 </body>

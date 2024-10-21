@@ -4,51 +4,41 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarComportamentos();
     carregarCirurgias();
     carregarRacas(); // Carrega todas as raças inicialmente
+    carregarSexos(); // Carrega as opções de sexo
 
+    // Adiciona evento de submit ao formulário para salvar o animal
     document.getElementById('formAnimal').addEventListener('submit', (event) => {
         event.preventDefault();
         salvarAnimal();
     });
 
+    // Adiciona evento de mudança ao select de espécie
     document.getElementById('especie').addEventListener('change', () => {
         carregarRacasPorEspecie();
     });
 
     //  --MODAL--
-
-    document.getElementById('btnNovaEspecie').addEventListener('click', () => {
-        abrirModalNovaEspecie();
-    });
-
+    document.getElementById('btnNovaEspecie').addEventListener('click', abrirModalNovaEspecie);
     document.getElementById('btnNovaRaca').addEventListener('click', () => {
         abrirModalNovaRaca();
         carregarEspeciesNoModalRaca();
     });
-
-    document.getElementById('btnNovoComportamento').addEventListener('click', () => {
-        abrirModalNovoComportamento();
-    });
-
-    document.getElementById('btnNovaCirurgia').addEventListener('click', () => {
-        abrirModalNovaCirurgia();
-    });
+    document.getElementById('btnNovoComportamento').addEventListener('click', abrirModalNovoComportamento);
+    document.getElementById('btnNovaCirurgia').addEventListener('click', abrirModalNovaCirurgia);
 
     // Event listeners para os formulários dos modais
     document.getElementById('formNovaEspecie').addEventListener('submit', (event) => {
         event.preventDefault();
         salvarNovaEspecie();
     });
-
     document.getElementById('formNovaRaca').addEventListener('submit', (event) => {
         event.preventDefault();
         salvarNovaRaca();
     });
-
     document.getElementById('formNovoComportamento').addEventListener('submit', (event) => {
         event.preventDefault();
         salvarNovoComportamento();
     });
-
     document.getElementById('formNovaCirurgia').addEventListener('submit', (event) => {
         event.preventDefault();
         salvarNovaCirurgia();
@@ -71,20 +61,6 @@ function abrirModalNovaRaca() {
     document.getElementById('modalNovaRaca').style.display = 'block';
     carregarEspeciesNoModalRaca();
     carregarPortesNoModalRaca();
-}
-
-function carregarPortesNoModalRaca() {
-    fetch('http://localhost:8080/porte/get/all')
-        .then(response => response.json())
-        .then(portes => {
-            const selectPorteRaca = document.getElementById('porteRaca');
-            portes.forEach(porte => {
-                const option = document.createElement('option');
-                option.value = porte.id;
-                option.textContent = porte.descricaoPorte;
-                selectPorteRaca.appendChild(option);
-            });
-        });
 }
 
 function fecharModalNovaRaca() {
@@ -126,10 +102,25 @@ function carregarEspeciesNoModalRaca() {
         });
 }
 
+function carregarPortesNoModalRaca() {
+    fetch('http://localhost:8080/porte/get/all')
+        .then(response => response.json())
+        .then(portes => {
+            const selectPorteRaca = document.getElementById('porteRaca');
+            portes.forEach(porte => {
+                const option = document.createElement('option');
+                option.value = porte.id;
+                option.textContent = porte.descricaoPorte;
+                selectPorteRaca.appendChild(option);
+            });
+        });
+}
+
 // --- FUNÇÕES PARA SALVAR ---
 
 function salvarNovaEspecie() {
     const descricaoEspecie = document.getElementById('descricaoEspecie').value;
+
     fetch('http://localhost:8080/especie/criar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -143,9 +134,9 @@ function salvarNovaEspecie() {
     })
     .then(novaEspecie => {
         console.log('Espécie criada:', novaEspecie);
-        carregarEspecies(); // Atualiza o select de espécies
         fecharModalNovaEspecie();
         alert('Espécie criada com Sucesso!');
+        carregarEspecies(); // Recarrega e reordena as espécies
     })
     .catch(error => {
         console.error('Erro ao criar espécie:', error);
@@ -155,14 +146,13 @@ function salvarNovaEspecie() {
 
 function salvarNovaRaca() {
     const descricaoRaca = document.getElementById('descricaoRaca').value;
-    const especieId = parseInt(document.getElementById('especieRaca').value); // Converte para número
+    const especieId = parseInt(document.getElementById('especieRaca').value);
     const porteId = parseInt(document.getElementById('porteRaca').value);
 
-    // Cria o objeto da raça com os IdDs de especie e porte
     const novaRaca = {
         descricaoRaca: descricaoRaca,
-        especie: {id: especieId},
-        porte: {id: porteId}
+        especie: { id: especieId },
+        porte: { id: porteId }
     };
 
     fetch('http://localhost:8080/raca/criar', {
@@ -178,9 +168,9 @@ function salvarNovaRaca() {
     })
     .then(racaCriada => {
         console.log('Raça criada:', racaCriada);
-        carregarRacas(); // Atualiza o select de raças
         fecharModalNovaRaca();
         alert('Raça Criada com sucesso!');
+        carregarRacas(); // Recarrega e reordena as racas
     })
     .catch(error => {
         console.error('Erro ao criar raça:', error);
@@ -203,9 +193,9 @@ function salvarNovoComportamento() {
     })
     .then(novoComportamento => {
         console.log('Comportamento criado:', novoComportamento);
-        carregarComportamentos(); // Atualiza o select de comportamentos
         fecharModalNovoComportamento();
         alert('Comportamento criado com sucesso!');
+        carregarComportamentos(); //Recarrega e reordena os comportamentos
     })
     .catch(error => {
         console.error('Erro ao criar comportamento:', error);
@@ -228,9 +218,9 @@ function salvarNovaCirurgia() {
     })
     .then(novaCirurgia => {
         console.log('Cirurgia criada:', novaCirurgia);
-        carregarCirurgias(); // Atualiza o select de cirurgias
         fecharModalNovaCirurgia();
         alert('Cirurgia criada com sucesso!');
+        carregarCirurgias(); // Recarrega e reordena as cirurgias
     })
     .catch(error => {
         console.error('Erro ao criar cirurgia:', error);
@@ -259,8 +249,12 @@ function carregarRacas() {
     fetch('http://localhost:8080/raca/get/all')
         .then(response => response.json())
         .then(racas => {
+
+            // Ordena as raças em ordem alfabetica
+            racas.sort((a,b) => a.descricaoRaca.localeCompare(b.descricaoRaca));
+
             const selectRaca = document.getElementById('raca');
-            selectRaca.innerHTML = ''; // Limpa o select antes de adicionar as opções
+            selectRaca.innerHTML = '<option value="">Selecione</option>';  
             
             racas.forEach(raca => {
                 const option = document.createElement('option');
@@ -279,7 +273,7 @@ function carregarRacasPorEspecie() {
     const especieId = parseInt(document.getElementById('especie').value); 
     const selectRaca = document.getElementById('raca');
 
-    selectRaca.innerHTML = ''; 
+    selectRaca.innerHTML = '<option value="">Selecione</option>'; // Limpa e adiciona a opção padrão
 
     if (especieId === '') {
         return;
@@ -288,6 +282,10 @@ function carregarRacasPorEspecie() {
     fetch('http://localhost:8080/raca/get/all')
         .then(response => response.json())
         .then(racas => {
+
+            //Ordena as raças em ordem alfabética
+            racas.sort((a, b) => a.descricaoRaca.localeCompare(b.descricaoRaca));
+
             const racasDaEspecie = racas.filter(raca => raca.especie.id === especieId);
 
             racasDaEspecie.forEach(raca => {
@@ -332,11 +330,32 @@ function excluirRaca(racaId) {
 
 // --- FIM DA LISTA DE RAÇAS ---
 
+/**
+ * Carrega as opções de sexo no select.
+ */
+function carregarSexos() {
+    const selectSexo = document.getElementById('sexo');
+    selectSexo.innerHTML = '<option value="">Selecione</option>'; 
+
+    const sexos = ['Macho', 'Fêmea']; 
+    sexos.forEach(sexo => {
+        const option = document.createElement('option');
+        option.value = sexo;
+        option.textContent = sexo;
+        selectSexo.appendChild(option);
+    });
+}
+
 function carregarComportamentos() {
     fetch('http://localhost:8080/comportamento/get/all')
         .then(response => response.json())
         .then(comportamentos => {
+            //ordena os comportamentos em ordem alfabética
+            comportamentos.sort((a,b) => a.descricaoComportamento.localeCompare(b.descricaoComportamento));
+
             const selectComportamento = document.getElementById('comportamento');
+            selectComportamento.innerHTML = '<option value="">Selecione</option>'; // Define a opção "Selecione"
+
             comportamentos.forEach(comportamento => {
                 const option = document.createElement('option');
                 option.value = comportamento.id;
@@ -351,12 +370,12 @@ function carregarCirurgias() {
     fetch('http://localhost:8080/cirurgia/get/all')
         .then(response => response.json())
         .then(cirurgias => {
+
+            //ordena as Cirurgias em ordem alfabética
+            cirurgias.sort((a, b) => a.descricaoCirurgia.localeCompare(b.descricaoCirurgia));
+
             const selectCirurgia = document.getElementById('cirurgia');
-            // Adiciona uma opção vazia
-            const emptyOption = document.createElement('option');
-            emptyOption.value = '';
-            emptyOption.textContent = 'Selecione (opcional)';
-            selectCirurgia.appendChild(emptyOption);
+            selectCirurgia.innerHTML = '<option value="">Selecione</option>'; // Adiciona a opção "Selecione"
 
             cirurgias.forEach(cirurgia => {
                 const option = document.createElement('option');
@@ -370,18 +389,49 @@ function carregarCirurgias() {
 
 function salvarAnimal() {
     const animalId = document.getElementById('animalId').value;
+    const nome = document.getElementById('nome').value;
+    const idade = document.getElementById('idade').value;
+    const racaId = document.getElementById('raca').value;
+    const sexo = document.getElementById('sexo').value;
+    const comportamentoId = document.getElementById('comportamento').value;
+    const cirurgiaId = document.getElementById('cirurgia').value ? document.getElementById('cirurgia').value : null;
+    const isCastrado = document.getElementById('isCastrado').checked;
+    const isVermifugado = document.getElementById('isVermifugado').checked;
+    const isVacinado = document.getElementById('isVacinado').checked;
+    const isCirurgia = document.getElementById('isCirurgia').checked;
+    const descricaoAnimal = document.getElementById('descricaoAnimal').value;
+    const foto = document.getElementById('foto').value;
+
+ // --- VALIDAÇÃO ---
+    if (sexo === "") {
+        alert("Por favor, selecione o sexo do animal.");
+        return; // Impede o envio do formulário se o sexo não for selecionado
+    }
+
+    if (racaId === "") {
+        alert("Por favor, selecione a raça do animal.");
+        return; // Impede o envio do formulário se o sexo não for selecionado
+    }
+
+    if (comportamentoId === "") {
+        alert("Por favor, selecione o comportamento do animal.");
+        return; // Impede o envio do formulário se o sexo não for selecionado
+    }
+
+    // Cria o objeto dadosAnimal com os valores corretos
     const dadosAnimal = {
-        nome: document.getElementById('nome').value,
-        idade: document.getElementById('idade').value,
-        racaId: document.getElementById('raca').value,
-        comportamentoId: document.getElementById('comportamento').value,
-        cirurgiaId: document.getElementById('cirurgia').value ? document.getElementById('cirurgia').value : null,
-        isCastrado: document.getElementById('isCastrado').checked,
-        isVermifugado: document.getElementById('isVermifugado').checked,
-        isVacinado: document.getElementById('isVacinado').checked,
-        isCirurgia: document.getElementById('isCirurgia').checked,
-        descricaoAnimal: document.getElementById('descricaoAnimal').value,
-        foto: document.getElementById('foto').value
+        nome: nome,
+        idade: idade,
+        racaId: racaId !== "" ? parseInt(racaId) : null, // Envia null se "Selecione" for escolhido
+        sexo: sexo,
+        comportamentoId: comportamentoId !== "" ? parseInt(comportamentoId) : null, // Envia null se "Selecione" for escolhido
+        cirurgiaId: cirurgiaId, // cirurgiaId já está sendo tratado corretamente
+        isCastrado: isCastrado,
+        isVermifugado: isVermifugado,
+        isVacinado: isVacinado,
+        isCirurgia: isCirurgia,
+        descricaoAnimal: descricaoAnimal,
+        foto: foto
     };
 
     const metodo = animalId ? 'PUT' : 'POST';
@@ -409,7 +459,7 @@ function salvarAnimal() {
             if (animalId) {
                 alert('Animal atualizado com sucesso!');
             } else {
-                alert ('Animal criado com sucesso!'); // Mantém o alerta para criação
+                alert('Animal criado com sucesso!'); // Mantém o alerta para criação
             }
         })
         .catch(error => {
@@ -423,6 +473,7 @@ function preencherFormulario(animal) {
     document.getElementById('nome').value = animal.nome;
     document.getElementById('idade').value = animal.idade;
     document.getElementById('raca').value = animal.raca.id;
+    document.getElementById('sexo').value = animal.sexo;
     document.getElementById('comportamento').value = animal.comportamento.id;
     document.getElementById('cirurgia').value = animal.cirurgia ? animal.cirurgia.id : '';
     document.getElementById('isCastrado').checked = animal.isCastrado;
@@ -456,6 +507,7 @@ function limparFormulario() {
     document.getElementById('nome').value = '';
     document.getElementById('idade').value = '';
     document.getElementById('raca').value = '';
+    document.getElementById('sexo').value = '';
     document.getElementById('comportamento').value = '';
     document.getElementById('cirurgia').value = '';
     document.getElementById('isCastrado').checked = false;
@@ -473,8 +525,12 @@ function carregarEspecies() {
     fetch('http://localhost:8080/especie/get/all')
         .then(response => response.json())
         .then(especies => {
+
+            //ordena as especies em ordem alfabetica
+            especies.sort((a, b) => a.descricaoEspecie.localeCompare(b.descricaoEspecie));
+
             const selectEspecie = document.getElementById('especie');
-            selectEspecie.innerHTML = ''; // Limpa o select de espécies antes de adicionar as opções
+            selectEspecie.innerHTML = '<option value="">Selecione</option>'; // Limpa o select de espécies antes de adicionar as opções
 
             especies.forEach(especie => {
                 const option = document.createElement('option');
@@ -509,6 +565,7 @@ function exibirAnimaisEmCards(animais) {
             <h3>${animal.nome}</h3>
             <p>Idade: ${animal.idade} anos</p>
             <p>Raça: ${animal.raca.descricaoRaca}</p>
+            <p>Sexo: ${animal.sexo}</p>
             <p>Comportamento: ${animal.comportamento.descricaoComportamento}</p>
             <p>Cirurgia: ${animal.cirurgia ? animal.cirurgia.descricaoCirurgia : '-'}</p>
             <p>Castrado: ${animal.isCastrado ? 'Sim' : 'Não'}</p>
