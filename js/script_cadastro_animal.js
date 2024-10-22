@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarComportamentos();
     carregarCirurgias();
     carregarRacas();
-    carregarSexos(); 
 
     // Adiciona evento de submit ao formulário de cadastro de animal
     document.getElementById('formAnimal').addEventListener('submit', (event) => {
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         carregarRacasPorEspecie();
     });
 
-    //  --MODAL--
+    // --MODAL--
     // Adiciona ouvintes de eventos para abrir os modais
     document.getElementById('btnNovaEspecie').addEventListener('click', abrirModalNovaEspecie);
     document.getElementById('btnNovaRaca').addEventListener('click', () => {
@@ -366,6 +365,22 @@ function excluirRaca(racaId) {
 // --- FIM DA LISTA DE RAÇAS ---
 
 /**
+ * Carrega as opções de sexo no select.
+ */
+function carregarSexos() {
+    const selectSexo = document.getElementById('sexo');
+    selectSexo.innerHTML = '<option value="">Selecione</option>'; 
+
+    const sexos = ['MACHO', 'FEMEA']; 
+    sexos.forEach(sexo => {
+        const option = document.createElement('option');
+        option.value = sexo;
+        option.textContent = sexo;
+        selectSexo.appendChild(option);
+    });
+}
+
+/**
  * Carrega a lista de comportamentos do backend e preenche o select.
  */
 function carregarComportamentos() {
@@ -376,7 +391,7 @@ function carregarComportamentos() {
             comportamentos.sort((a,b) => a.descricaoComportamento.localeCompare(b.descricaoComportamento));
 
             const selectComportamento = document.getElementById('comportamento');
-            selectComportamento.innerHTML = '<option value="">Selecione</option>'; // Define a opção "Selecione"
+            selectComportamento.innerHTML = '<option value="">Selecione</option>'; 
 
             comportamentos.forEach(comportamento => {
                 const option = document.createElement('option');
@@ -400,7 +415,7 @@ function carregarCirurgias() {
             cirurgias.sort((a, b) => a.descricaoCirurgia.localeCompare(b.descricaoCirurgia));
 
             const selectCirurgia = document.getElementById('cirurgia');
-            selectCirurgia.innerHTML = '<option value="">Selecione</option>'; // Adiciona a opção "Selecione"
+            selectCirurgia.innerHTML = '<option value="">Selecione</option>'; 
 
             cirurgias.forEach(cirurgia => {
                 const option = document.createElement('option');
@@ -430,7 +445,7 @@ function salvarAnimal() {
     const descricaoAnimal = document.getElementById('descricaoAnimal').value;
     const foto = document.getElementById('foto').value;
 
- // --- VALIDAÇÃO ---
+    // --- VALIDAÇÃO ---
     if (sexo === "") {
         alert("Por favor, selecione o sexo do animal.");
         return; // Impede o envio do formulário se o sexo não for selecionado
@@ -438,12 +453,12 @@ function salvarAnimal() {
 
     if (racaId === "") {
         alert("Por favor, selecione a raça do animal.");
-        return; // Impede o envio do formulário se o sexo não for selecionado
+        return; // Impede o envio do formulário se a raça não for selecionada
     }
 
     if (comportamentoId === "") {
         alert("Por favor, selecione o comportamento do animal.");
-        return; // Impede o envio do formulário se o sexo não for selecionado
+        return; // Impede o envio do formulário se o comportamento não for selecionado
     }
 
     // Cria o objeto dadosAnimal com os valores corretos
@@ -461,6 +476,8 @@ function salvarAnimal() {
         descricaoAnimal: descricaoAnimal,
         foto: foto
     };
+
+    console.log("Dados do Animal sendo enviados:", dadosAnimal); // Adicione esta linha para depurar
 
     const metodo = animalId ? 'PUT' : 'POST';
     const url = animalId ? `http://localhost:8080/animal/put/${animalId}` : 'http://localhost:8080/animal/criar';
