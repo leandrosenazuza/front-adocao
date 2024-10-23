@@ -7,27 +7,27 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarAnimais();
     carregarComportamentos();
     carregarCirurgias();
-    carregarRacas(); 
+    carregarRacas();
     carregarSexos();
 
     // Adiciona evento de submit ao formulário de cadastro de animal
     document.getElementById('formAnimal').addEventListener('submit', (event) => {
-        event.preventDefault();
-        salvarAnimal();
+        event.preventDefault(); // Impede o comportamento padrão de submit do formulário
+        salvarAnimal();        // Chama a função para salvar o animal no backend
     });
 
     // Adiciona evento de mudança ao select de espécie para carregar as raças correspondentes
     document.getElementById('especie').addEventListener('change', () => {
-        carregarRacasPorEspecie();
+        carregarRacasPorEspecie(); // Carrega as raças da espécie selecionada
     });
 
     //  --MODAL--
-    // Adiciona ouvintes de eventos para abrir os modais
+    // Adiciona ouvintes de eventos para abrir os modais de nova espécie, raça, comportamento e cirurgia
     document.getElementById('btnNovaEspecie').addEventListener('click', abrirModalNovaEspecie);
     document.getElementById('btnNovaRaca').addEventListener('click', () => {
         abrirModalNovaRaca();
         carregarEspeciesNoModalRaca();
-        carregarPortesNoModalRaca();
+        carregarPortesNoModalRaca(); // Carrega os portes no modal de nova raça
     });
     document.getElementById('btnNovoComportamento').addEventListener('click', abrirModalNovoComportamento);
     document.getElementById('btnNovaCirurgia').addEventListener('click', abrirModalNovaCirurgia);
@@ -101,7 +101,7 @@ function carregarEspeciesNoModalRaca() {
         .then(response => response.json())
         .then(especies => {
             const selectEspecieRaca = document.getElementById('especieRaca');
-            selectEspecieRaca.innerHTML = '';
+            selectEspecieRaca.innerHTML = ''; // Limpa o select antes de adicionar opções
 
             especies.forEach(especie => {
                 const option = document.createElement('option');
@@ -161,7 +161,7 @@ function salvarNovaEspecie() {
     .then(novaEspecie => {
         console.log('Espécie criada:', novaEspecie);
         fecharModalNovaEspecie();
-        alert('Espécie criada com sucesso!');
+        alert('Espécie criada com Sucesso!');
         carregarEspecies(); // Recarrega e reordena as espécies
     })
     .catch(error => {
@@ -198,8 +198,8 @@ function salvarNovaRaca() {
     .then(racaCriada => {
         console.log('Raça criada:', racaCriada);
         fecharModalNovaRaca();
-        alert('Raça criada com sucesso!');
-        carregarRacas(); // Recarrega e reordena as raças
+        alert('Raça Criada com sucesso!');
+        carregarRacas(); 
     })
     .catch(error => {
         console.error('Erro ao criar raça:', error);
@@ -290,6 +290,7 @@ function carregarRacas() {
     fetch('http://localhost:8080/raca/get/all')
         .then(response => response.json())
         .then(racas => {
+
             // Ordena as raças em ordem alfabética
             racas.sort((a, b) => a.descricaoRaca.localeCompare(b.descricaoRaca));
 
@@ -315,18 +316,20 @@ function carregarRacas() {
 function carregarRacasPorEspecie() {
     const especieId = parseInt(document.getElementById('especie').value);
     const selectRaca = document.getElementById('raca');
-    selectRaca.innerHTML = '<option value="">Selecione</option>'; 
+    selectRaca.innerHTML = '<option value="">Selecione</option>'; // Limpa e adiciona a opção padrão
 
     if (especieId === '') {
-        return;
+        return; // Se nenhuma espécie foi selecionada, não faz nada
     }
 
     // Busca as raças da espécie usando a nova rota
-    fetch(`http://localhost:8080/raca/get/especie/${especieId}`) 
+    fetch(`http://localhost:8080/raca/get/especie/${especieId}`)
         .then(response => response.json())
         .then(racas => {
-            // Ordena as raças em ordem alfabética
-            racas.sort((a, b) => a.descricaoRaca.localeCompare(b.descricaoRaca));
+            // Verifica se raca é um array antes de ordenar
+            if (Array.isArray(racas)) {
+               // Ordena as raças em ordem alfabética
+            racas.sort((a, b) => a.descricaoRaca.localeCompare(b.descricaoRaca)); 
 
             racas.forEach(raca => {
                 const option = document.createElement('option');
@@ -345,6 +348,12 @@ function carregarRacasPorEspecie() {
                 });
                 selectRaca.parentNode.insertBefore(btnExcluirRaca, selectRaca.nextSibling);
             });
+        } else {
+            console.error("A resposta da API não é um array de raças:", racas);
+                // Lide com o caso em que a resposta não é um array, por exemplo, exibindo uma mensagem de erro
+        }
+            
+            
         })
         .catch(error => {
             console.error('Erro ao carregar raças por espécie:', error);
@@ -383,7 +392,7 @@ function carregarSexos() {
     const selectSexo = document.getElementById('sexo');
     selectSexo.innerHTML = '<option value="">Selecione</option>';
 
-    const sexos = ['Macho', 'Fêmea'];
+    const sexos = ['MACHO', 'FEMEA'];
     sexos.forEach(sexo => {
         const option = document.createElement('option');
         option.value = sexo;
@@ -457,10 +466,14 @@ function salvarAnimal() {
     const descricaoAnimal = document.getElementById('descricaoAnimal').value;
     const foto = document.getElementById('foto').value;
 
-    // Validação dos campos obrigatórios
+    console.log('racaId:', racaId); 
+    console.log('sexo:', sexo); 
+    console.log('comportamentoId:', comportamentoId);
+
+ // --- VALIDAÇÃO ---
     if (sexo === "" || racaId === "" || comportamentoId === "") {
         alert("Por favor, preencha todos os campos obrigatórios.");
-        return;
+        return; 
     }
 
     // Cria o objeto dadosAnimal com os valores corretos
@@ -506,7 +519,7 @@ function salvarAnimal() {
             if (animalId) {
                 alert('Animal atualizado com sucesso!');
             } else {
-                alert('Animal criado com sucesso!');
+                alert('Animal criado com sucesso!'); 
             }
         })
         .catch(error => {
@@ -584,11 +597,11 @@ function carregarEspecies() {
         .then(response => response.json())
         .then(especies => {
 
-            // Ordena as espécies em ordem alfabética
+            //ordena as especies em ordem alfabetica
             especies.sort((a, b) => a.descricaoEspecie.localeCompare(b.descricaoEspecie));
 
             const selectEspecie = document.getElementById('especie');
-            selectEspecie.innerHTML = '<option value="">Selecione</option>';
+            selectEspecie.innerHTML = '<option value="">Selecione</option>'; // Limpa o select de espécies antes de adicionar as opções
 
             especies.forEach(especie => {
                 const option = document.createElement('option');
