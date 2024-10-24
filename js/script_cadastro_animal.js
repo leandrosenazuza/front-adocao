@@ -386,19 +386,21 @@ function excluirRaca(racaId) {
 // --- FIM DA LISTA DE RAÇAS ---
 
 /**
- * Carrega as opções de sexo no select.
+ * Carrega as opções de sexo no grupo de radio buttons.
  */
 function carregarSexos() {
-    const selectSexo = document.getElementById('sexo');
-    selectSexo.innerHTML = '<option value="">Selecione</option>';
+    const radioMacho = document.getElementById('sexoMacho');
+    const radioFemea = document.getElementById('sexoFemea');
 
-    const sexos = ['MACHO', 'FEMEA'];
-    sexos.forEach(sexo => {
-        const option = document.createElement('option');
-        option.value = sexo;
-        option.textContent = sexo;
-        selectSexo.appendChild(option);
-    });
+    // Define o valor default como femea
+    radioFemea.checked = true;
+
+    // Verifica se os radios buttons existem
+    if (!radioMacho || !radioFemea) {
+        console.error("Radio Buttons de sexo não encontrados");
+        return; // Encerra a função se os elementos não forem encontrados
+    }
+    
 }
 
 /**
