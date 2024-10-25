@@ -316,44 +316,43 @@ function carregarRacas() {
 function carregarRacasPorEspecie() {
     const especieId = parseInt(document.getElementById('especie').value);
     const selectRaca = document.getElementById('raca');
-    selectRaca.innerHTML = '<option value="">Selecione</option>'; // Limpa e adiciona a opção padrão
+    selectRaca.innerHTML = '<option value="">Selecione</option>';
 
     if (especieId === '') {
-        return; // Se nenhuma espécie foi selecionada, não faz nada
+        return; 
     }
 
-    // Busca as raças da espécie usando a nova rota
     fetch(`http://localhost:8080/raca/get/especie/${especieId}`)
         .then(response => response.json())
         .then(racas => {
-            // Verifica se raca é um array antes de ordenar
             if (Array.isArray(racas)) {
-               // Ordena as raças em ordem alfabética
-            racas.sort((a, b) => a.descricaoRaca.localeCompare(b.descricaoRaca)); 
+                racas.sort((a, b) => a.descricaoRaca.localeCompare(b.descricaoRaca));
 
-            racas.forEach(raca => {
-                const option = document.createElement('option');
-                option.value = raca.id;
-                option.textContent = raca.descricaoRaca;
-                selectRaca.appendChild(option);
+                racas.forEach(raca => {
+                    const option = document.createElement('option');
+                    option.value = raca.id;
+                    option.textContent = raca.descricaoRaca;
+                    selectRaca.appendChild(option);
+                }); 
+            } else {
+                console.error("A resposta da API não é um array de raças:", racas);
+            }
 
-                // Botão para excluir a raça
-                const btnExcluirRaca = document.createElement('button');
-                btnExcluirRaca.textContent = 'Excluir';
-                btnExcluirRaca.classList.add('botao-excluir-raca');
-                btnExcluirRaca.addEventListener('click', () => {
-                    if (confirm(`Tem certeza que deseja excluir a raça ${raca.descricaoRaca}?`)) {
-                        excluirRaca(raca.id);
+            // Adicione o botão "Excluir Raça" aqui, fora do loop e do bloco if/else
+            const btnExcluirRaca = document.createElement('button');
+            btnExcluirRaca.textContent = 'Excluir';
+            btnExcluirRaca.classList.add('botao-excluir-raca');
+            btnExcluirRaca.addEventListener('click', () => {
+                const racaSelecionadaId = selectRaca.value;
+                if (racaSelecionadaId !== "") {
+                    if (confirm(`Tem certeza que deseja excluir a raça selecionada?`)) {
+                        excluirRaca(racaSelecionadaId);
                     }
-                });
-                selectRaca.parentNode.insertBefore(btnExcluirRaca, selectRaca.nextSibling);
+                } else {
+                    alert("Por favor, selecione uma raça para excluir.");
+                }
             });
-        } else {
-            console.error("A resposta da API não é um array de raças:", racas);
-                // Lide com o caso em que a resposta não é um array, por exemplo, exibindo uma mensagem de erro
-        }
-            
-            
+            selectRaca.parentNode.insertBefore(btnExcluirRaca, selectRaca.nextSibling); 
         })
         .catch(error => {
             console.error('Erro ao carregar raças por espécie:', error);
@@ -458,7 +457,6 @@ function salvarAnimal() {
     const nome = document.getElementById('nome').value;
     const idade = document.getElementById('idade').value;
     const racaId = document.getElementById('raca').value;
-    const sexo = document.getElementById('sexo').value;
     const comportamentoId = document.getElementById('comportamento').value;
     const cirurgiaId = document.getElementById('cirurgia').value ? document.getElementById('cirurgia').value : null;
     const isCastrado = document.getElementById('isCastrado').checked;
@@ -468,12 +466,23 @@ function salvarAnimal() {
     const descricaoAnimal = document.getElementById('descricaoAnimal').value;
     const foto = document.getElementById('foto').value;
 
-    console.log('racaId:', racaId); 
-    console.log('sexo:', sexo); 
+    // Obtém o valor do radio button de sexo selecionado
+    const sexoSelecionado = document.querySelector('input[name="sexo"]:checked');
+
+    // Validação do campo sexo
+    if (sexoSelecionado === null) {
+        alert("Por favor, selecione o sexo do animal.");
+        return; 
+    }
+
+    const sexo = sexoSelecionado.value; 
+
+    console.log('racaId:', racaId);
+    console.log('sexo:', sexo);
     console.log('comportamentoId:', comportamentoId);
 
- // --- VALIDAÇÃO ---
-    if (sexo === "" || racaId === "" || comportamentoId === "") {
+    // --- VALIDAÇÃO ---
+    if (racaId === "" || comportamentoId === "") {
         alert("Por favor, preencha todos os campos obrigatórios.");
         return; 
     }
@@ -482,10 +491,10 @@ function salvarAnimal() {
     const dadosAnimal = {
         nome: nome,
         idade: idade,
-        racaId: racaId !== "" ? parseInt(racaId) : null, // Envia null se "Selecione" for escolhido
+        racaId: racaId !== "" ? parseInt(racaId) : null, 
         sexo: sexo,
-        comportamentoId: comportamentoId !== "" ? parseInt(comportamentoId) : null, // Envia null se "Selecione" for escolhido
-        cirurgiaId: cirurgiaId, // cirurgiaId já está sendo tratado corretamente
+        comportamentoId: comportamentoId !== "" ? parseInt(comportamentoId) : null,
+        cirurgiaId: cirurgiaId, 
         isCastrado: isCastrado,
         isVermifugado: isVermifugado,
         isVacinado: isVacinado,
@@ -521,7 +530,7 @@ function salvarAnimal() {
             if (animalId) {
                 alert('Animal atualizado com sucesso!');
             } else {
-                alert('Animal criado com sucesso!'); 
+                alert('Animal criado com sucesso!');
             }
         })
         .catch(error => {
