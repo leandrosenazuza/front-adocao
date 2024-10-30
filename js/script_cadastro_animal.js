@@ -456,6 +456,7 @@ function salvarNovaCirurgia() {
             console.error('Erro ao criar cirurgia:', error);
             alert(error.message); // Exibe a mensagem de erro para o usuário
         });
+}
 
         /**
  * Salva um novo animal ou atualiza um animal existente, enviando os dados para o backend.
@@ -552,7 +553,7 @@ function salvarAnimal() {
             alert(error.message); // Exibe um alerta com a mensagem de erro
         });
 }
-}
+
 
 
 /**
