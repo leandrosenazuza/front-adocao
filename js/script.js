@@ -325,16 +325,4 @@ function carregarCirurgias() {
     // ... (implementação para carregar cirurgias)
 }
 
-function carregarNumeroAnimaisAdocao() {
-   if(document.getElementById('animais-para-adocao').innerHTML != null){
 
-    let url = 'http://localhost:8080/animal/animaisAdocao';
-
-    fetch(url).then((response) => {
-        return response.json();
-    }).then((data) => {
-        let numeroAnimalAdocao = data.numeroAnimalAdocao;
-        document.getElementById('animais-para-adocao').innerHTML = numeroAnimalAdocao;
-    })
-   }   
-}
