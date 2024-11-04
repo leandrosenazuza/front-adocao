@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
 /**
  * Carrega a lista de animais do backend e a exibe na tabela.
  */
@@ -243,66 +244,73 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function carregarAnimais() {
-    const especieId = document.getElementById('filtroEspecie').value;
-    let url = 'http://localhost:8080/animal/get/all';
+    if(document.getElementById('filtroEspecie').value != null){
 
-    // Se uma espécie específica foi selecionada, altera a URL da requisição
-    if (especieId !== 'todos') {
-        url = `http://localhost:8080/animal/get/especie/${especieId}`; 
-    }
+        const especieId = document.getElementById('filtroEspecie').value;
+        let url = 'http://localhost:8080/animal/get/all';
 
-    fetch(url)
-        .then(response => response.json())
-        .then(animais => {
-            const animalGallery = document.getElementById('animalGallery');
-            animalGallery.innerHTML = ''; // Limpa a galeria antes de adicionar os cards
-
-            animais.forEach(animal => {
-                // Cria o card
-                const card = document.createElement('div');
-                card.classList.add('animal-card');
-
-                // Imagem
-                const img = document.createElement('img');
-                img.src = animal.foto || 'placeholder.jpg'; // Imagem de placeholder se não houver
-                img.alt = animal.nome;
-                card.appendChild(img);
-
-                // Conteúdo do Card
-                const content = document.createElement('div');
-                content.classList.add('content');
-                content.innerHTML = `
-                    <h3>${animal.nome}</h3>
-                    <p>Idade: ${animal.idade} anos</p>
-                    <p>Raça: ${animal.raca.descricaoRaca}</p>
-                    <p>Comportamento: ${animal.comportamento.descricaoComportamento}</p>
-                    <p>Cirurgia: ${animal.cirurgia ? animal.cirurgia.descricaoCirurgia : '-'}</p>
-                    <p>Castrado: ${animal.isCastrado ? 'Sim' : 'Não'}</p>
-                    <p>Vermifugado: ${animal.isVermifugado ? 'Sim' : 'Não'}</p>
-                    <p>Vacinado: ${animal.isVacinado ? 'Sim' : 'Não'}</p>
-                    <p>Cirurgia Realizada: ${animal.isCirurgia ? 'Sim' : 'Não'}</p>
-                    <p>${animal.descricaoAnimal}</p>
-                `;
-
-                // Botão "Quero Adotar!"
-                const botaoAdotar = document.createElement('button');
-                botaoAdotar.classList.add('botao-adotar');
-                botaoAdotar.textContent = 'Quero Adotar!';
-                botaoAdotar.addEventListener('click', () => {
-                    // Lógica para lidar com o clique no botão (ex: abrir um modal)
-                    alert(`Você quer adotar o(a) ${animal.nome}! Entre em contato conosco!`);
+        // Se uma espécie específica foi selecionada, altera a URL da requisição
+        if (especieId !== 'todos') {
+            url = `http://localhost:8080/animal/get/especie/${especieId}`; 
+        }
+    
+        fetch(url)
+            .then(response => response.json())
+            .then(animais => {
+                const animalGallery = document.getElementById('animalGallery');
+                animalGallery.innerHTML = ''; // Limpa a galeria antes de adicionar os cards
+    
+                animais.forEach(animal => {
+                    // Cria o card
+                    const card = document.createElement('div');
+                    card.classList.add('animal-card');
+    
+                    // Imagem
+                    const img = document.createElement('img');
+                    img.src = animal.foto || 'placeholder.jpg'; // Imagem de placeholder se não houver
+                    img.alt = animal.nome;
+                    card.appendChild(img);
+    
+                    // Conteúdo do Card
+                    const content = document.createElement('div');
+                    content.classList.add('content');
+                    content.innerHTML = `
+                        <h3>${animal.nome}</h3>
+                        <p>Idade: ${animal.idade} anos</p>
+                        <p>Raça: ${animal.raca.descricaoRaca}</p>
+                        <p>Comportamento: ${animal.comportamento.descricaoComportamento}</p>
+                        <p>Cirurgia: ${animal.cirurgia ? animal.cirurgia.descricaoCirurgia : '-'}</p>
+                        <p>Castrado: ${animal.isCastrado ? 'Sim' : 'Não'}</p>
+                        <p>Vermifugado: ${animal.isVermifugado ? 'Sim' : 'Não'}</p>
+                        <p>Vacinado: ${animal.isVacinado ? 'Sim' : 'Não'}</p>
+                        <p>Cirurgia Realizada: ${animal.isCirurgia ? 'Sim' : 'Não'}</p>
+                        <p>${animal.descricaoAnimal}</p>
+                    `;
+    
+                    // Botão "Quero Adotar!"
+                    const botaoAdotar = document.createElement('button');
+                    botaoAdotar.classList.add('botao-adotar');
+                    botaoAdotar.textContent = 'Quero Adotar!';
+                    botaoAdotar.addEventListener('click', () => {
+                        // Lógica para lidar com o clique no botão (ex: abrir um modal)
+                        alert(`Você quer adotar o(a) ${animal.nome}! Entre em contato conosco!`);
+                    });
+                    content.appendChild(botaoAdotar); 
+    
+                    card.appendChild(content);
+                    animalGallery.appendChild(card);
                 });
-                content.appendChild(botaoAdotar); 
-
-                card.appendChild(content);
-                animalGallery.appendChild(card);
+            })
+            .catch(error => {
+                console.error('Erro ao carregar animais:', error);
+                const animalGallery = document.getElementById('animalGallery');
+                animalGallery.innerHTML = '<p>Erro ao carregar os animais. Por favor, tente novamente mais tarde.</p>';
             });
-        })
-        .catch(error => {
-            console.error('Erro ao carregar animais:', error);
-            const animalGallery = document.getElementById('animalGallery');
-            animalGallery.innerHTML = '<p>Erro ao carregar os animais. Por favor, tente novamente mais tarde.</p>';
-        });
+
+
+    }
+    
+   
 }
 
 function carregarRacas() {
@@ -316,3 +324,5 @@ function carregarComportamentos() {
 function carregarCirurgias() {
     // ... (implementação para carregar cirurgias)
 }
+
+
