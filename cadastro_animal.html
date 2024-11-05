@@ -45,18 +45,18 @@
                     <button type="button" id="btnNovaRaca">Nova Raça</button><br><br>
 
                     <div class="sexo-group">
-                        <label for="sexo">Sexo:</label><br>
+    
                         <input type="radio" id="sexoMacho" name="sexo" value="MACHO" required>
                         <label for="sexoMacho">Macho</label>
                         <input type="radio" id="sexoFemea" name="sexo" value="FEMEA" required>
                         <label for="sexoFemea">Fêmea</label>
-                        <input type="radio" id="sexoDesconhecido" name="sexo" value="DESCONHECIDO" required> <label for="sexoDesconhecido">Desconhecido</label> </div>
+                    </div>
 
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" required><br>
+                    <label for="nome"></label>
+                    <input type="text" id="nome" placeholder=" Nome do animal" name="nome" required><br>
 
-                    <label for="idade">Idade:</label>
-                    <input type="number" id="idade" name="idade" required><br>
+                    <label for="idade"></label>
+                    <input type="number" id="idade" placeholder=" Idade do animal" name="idade" required><br>
 
                     <label for="comportamento">Comportamento:</label>
                     <select id="comportamento" name="comportamentoId" required>
@@ -88,14 +88,20 @@
                     </div>
 
                     <div class="checkbox-group">
-                        <input type="checkbox" id="isCirurgia" name="isCirurgia">
-                        <label for="isCirurgia">Cirurgia Realizada (Sim/Não)</label><br> </div>
+                        <label>Cirurgia Realizada:</label><br>
+                        <input type="radio" id="cirurgiaSim" name="cirurgiaRealizada" value="SIM" required>
+                        <label for="cirurgiaSim">Sim</label>
+                        <input type="radio" id="cirurgiaNao" name="cirurgiaRealizada" value="NAO" required checked>
+                        <label for="cirurgiaNao">Não</label>
+                    </div>
 
-                    <label for="descricaoAnimal">Descrição:</label><br>
-                    <textarea id="descricaoAnimal" name="descricaoAnimal" required></textarea><br>
+                    <label for="descricaoCirurgia"></label><br>
+                    <textarea id="descricaoCirurgia" placeholder=" Descrição da Cirurgia:" required></textarea><br><br>
 
-                    <label for="foto">Foto (URL):</label>
-                    <input type="text" id="foto" name="foto" required><br>
+                    
+
+                    <label for="foto">Foto:</label>
+                    <input type="text" id="foto" name="foto" placeholder=" Insira a URL da foto aqui" required><br>
                 </div>
             </div>
             <button type="submit">Salvar</button>
@@ -104,7 +110,10 @@
 
     <div id="animalList">
         <h2>Lista de Animais</h2>
-        <div id="animalGallery"></div> </div> </div>
+        <div id="animalGallery"></div>
+    </div>
+</div>
+
 <!-- Modais -->
 <div id="modalNovaEspecie" class="modal">
     <div class="modal-content">
@@ -151,9 +160,9 @@
         <span class="close-button" onclick="fecharModalNovaCirurgia()">×</span>
         <h2>Nova Cirurgia</h2>
         <form id="formNovaCirurgia">
-            <label for="descricaoCirurgia">Descrição da Cirurgia:</label>
-            <input type="text" id="descricaoCirurgia" name="descricaoCirurgia" required>
-            <button type="submit" class="modal-button">Salvar</button>
+            <label for="descricaoNovaCirurgia">Descrição da Nova Cirurgia:</label>
+            <input type="text" id="descricaoNovaCirurgia" name="descricaoNovaCirurgia" required>
+            <button type="submit" class="modal-button">Enviar</button>
         </form>
     </div>
 </div>
