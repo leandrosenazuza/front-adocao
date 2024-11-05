@@ -328,7 +328,6 @@ function carregarCirurgias() {
 function abrirModalAdocao() {
     let modal = document.getElementById('modalAdocao');
 
-    // Create the modal only if it doesn't already exist
     if (!modal) {
         // Modal container div
         modal = document.createElement('div');
@@ -337,12 +336,10 @@ function abrirModalAdocao() {
         modal.style.display = 'block';
         modal.setAttribute('role', 'dialog');
 
-        // Modal dialog div
         const modalDialog = document.createElement('div');
         modalDialog.className = 'modal-dialog';
         modal.appendChild(modalDialog);
 
-        // Modal content div
         const modalContent = document.createElement('div');
         modalContent.className = 'modal-content';
         modalDialog.appendChild(modalContent);
@@ -354,7 +351,7 @@ function abrirModalAdocao() {
 
         const modalTitle = document.createElement('h5');
         modalTitle.className = 'modal-title';
-        modalTitle.textContent = 'Adoption Form';
+        modalTitle.textContent = 'Formulário de Adoção';
         modalHeader.appendChild(modalTitle);
 
         const closeButton = document.createElement('button');
@@ -375,62 +372,64 @@ function abrirModalAdocao() {
         const form = document.createElement('form');
         form.id = 'adocaoForm';
 
-        // Form field with Bootstrap classes
-        const formGroup = document.createElement('div');
-        formGroup.className = 'mb-3';
+        const fields = [
+            { label: 'Nome do Interessado', name: 'nomeInteressado', type: 'text', placeholder: 'Digite seu nome' },
+            { label: 'Telefone do Interessado', name: 'telefoneInteressado', type: 'tel', placeholder: 'Digite seu telefone' },
+            { label: 'Email do Interessado', name: 'emailInteressado', type: 'email', placeholder: 'Digite seu email' },
+            { label: 'ID do Animal', name: 'animalId', type: 'number', placeholder: 'Digite o ID do animal' }
+        ];
 
-        const label = document.createElement('label');
-        label.className = 'form-label';
-        label.textContent = 'Enter your name';
-        formGroup.appendChild(label);
+        fields.forEach(field => {
+            const formGroup = document.createElement('div');
+            formGroup.className = 'mb-3';
 
-        const inputField = document.createElement('input');
-        inputField.type = 'text';
-        inputField.name = 'name';
-        inputField.className = 'form-control';
-        inputField.placeholder = 'Enter your name';
-        inputField.required = true;
-        formGroup.appendChild(inputField);
+            const label = document.createElement('label');
+            label.className = 'form-label';
+            label.textContent = field.label;
+            formGroup.appendChild(label);
 
-        form.appendChild(formGroup);
+            const inputField = document.createElement('input');
+            inputField.type = field.type;
+            inputField.name = field.name;
+            inputField.className = 'form-control';
+            inputField.placeholder = field.placeholder;
+            inputField.required = true;
+            formGroup.appendChild(inputField);
 
-        // Submit button with Bootstrap classes
+            form.appendChild(formGroup);
+        });
+
         const submitButton = document.createElement('button');
         submitButton.type = 'submit';
         submitButton.className = 'btn btn-primary';
-        submitButton.textContent = 'Submit';
+        submitButton.textContent = 'Enviar';
         form.appendChild(submitButton);
 
-        // Append form to modal body
         modalBody.appendChild(form);
-
-        // Append modal to the body
         document.body.appendChild(modal);
 
-        // Handle form submission
         form.onsubmit = function(event) {
             event.preventDefault();
 
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
 
-            // Send form data as a POST request (adjust URL as needed)
-            fetch('http://localhost:8080/solicitacao/solicitar/listarTodas', {
+            fetch('http://localhost:8080/solicitacao/solicitar/criar', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),
             })
             .then(response => response.json())
             .then(result => {
-                alert('Form submitted successfully!');
+                alert('Formulário enviado com sucesso!');
                 modal.style.display = 'none';
+                modal.form = null;
             })
             .catch(error => {
-                console.error('Error:', error);
+                console.error('Erro:', error);
             });
         };
     } else {
-        // Display the modal if it already exists
         modal.style.display = 'block';
     }
 }
