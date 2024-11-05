@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pata Amada - Adote</title>
+    <title>Pata Amada - Home</title>
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
+
+
 </head>
-<body class="body bodyadote">
-    <div class="container-body container-adote">
+<body class="body bodyhome">
+    <div class="container-body container-home">
         <header>
             <div class="logo">
                 <img src="Images/logoPata.png" alt="Pata Amada Logo">
@@ -18,32 +20,30 @@
                     <li><a href="/index.html"><b>Home</b></a></li>
                     <li><a href="/sobre.html"><b>Sobre</b></a></li>
                     <li><a href="/adote.html"><b>Adote</b></a></li>
-                    <li><a href="/cadastro_animal.html"><b>Doe</b></a></li>
+                    <li><a href="/doar.html"><b>Doe</b></a></li>
                     <li><a href="/login.html"><b>Login</b></a></li>
                     <li><a href="/area_usuario.html"><b>Área do Usuário</b></a></li>
                 </ul>
             </nav>
         </header>
 
-        <main class="main main_adote">
-            <h1 class="titulo">Animais Disponíveis para Adoção</h1>
-
-            <div class="filtroEspecie">
-                <label for="filtroEspecie">Filtrar por Espécie:</label>
-                <select id="filtroEspecie">
-                    <option value="todos">Todos</option>
-                    <option value="1">Gato</option>
-                    <option value="2">Cachorro</option>
-                    <option value="3">Pássaro</option>
-                </select>
-            </div>
-
-            <div id="animalGallery">
-            </div>
-        </main>
+        <div class="wrapper wrapper-body">
+            <section class="banner banner-sobre">
+              <div class="banner-text">
+                <h1 class="banner-title">Pata <span class="cor-vermelha">Amada</span></h1>
+                <p class="banner-text"><br> Esta página está em manutenção! Em breve mais informações!
+                </p>
+                </div>
+              <div class="banner-image">
+                <img class="banner-img" src="/Images/catdog.png">
+              </div>
+            </section>
+        </div>
     </div>
-
-    <script src="/js/script.js"></script>
-    <script src="/js/jquery.js"></script>
+    
+    </div><!--container-->
 </body>
+<script src="/js/jquery.js"></script>
+<script src="/js/script.js"></script>
+
 </html>
