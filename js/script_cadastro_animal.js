@@ -8,9 +8,12 @@
 /**
  * Carrega as espécies do backend e preenche o select de espécies.
  */
+import { API_BASE_URL } from './config.js';
+
+
 function carregarEspecies() {
     console.log("Carregando espécies...");
-    fetch('http://localhost:8080/especie/get/all')
+    fetch(`${ API_BASE_URL }/especie/get/all`)
         .then(response => {
             if (!response.ok) {
                 console.error("Erro na resposta da API:", response.status, response.statusText);
@@ -47,7 +50,7 @@ function carregarEspecies() {
  */
 function carregarRacas() {
     console.log("Carregando raças...");
-    fetch('http://localhost:8080/raca/get/all')
+    fetch(`${ API_BASE_URL }/raca/get/all`)
         .then(response => response.json())
         .then(racas => {
             racas.sort((a, b) => a.descricaoRaca.localeCompare(b.descricaoRaca));
@@ -82,7 +85,7 @@ function carregarRacasPorEspecie() {
 
     console.log("Carregando raças por espécie...", especieId);
 
-    fetch(`http://localhost:8080/raca/get/especie/${especieId}`)
+    fetch(`${ API_BASE_URL }/raca/get/especie/${especieId}`)
         .then(response => {
             if (!response.ok) {
                 return response.json().then(err => {
@@ -134,7 +137,7 @@ function carregarRacasPorEspecie() {
  * @param {number} racaId - O ID da raça a ser excluída.
  */
 function excluirRaca(racaId) {
-    fetch(`http://localhost:8080/raca/delete/${racaId}`, { method: 'DELETE' })
+    fetch(`${ API_BASE_URL }/raca/delete/${racaId}`, { method: 'DELETE' })
         .then(response => {
             if (response.ok) {
                 console.log('Raça excluída com sucesso!');
@@ -173,7 +176,7 @@ function carregarSexos() {
  * Carrega os comportamentos do backend e preenche o select de comportamentos.
  */
 function carregarComportamentos() {
-    fetch('http://localhost:8080/comportamento/get/all')
+    fetch(`${ API_BASE_URL }/comportamento/get/all`)
         .then(response => response.json())
         .then(comportamentos => {
             // Ordena os comportamentos em ordem alfabética
@@ -196,7 +199,7 @@ function carregarComportamentos() {
  * Carrega as cirurgias do backend e preenche o select de cirurgias.
  */
 function carregarCirurgias() {
-    fetch('http://localhost:8080/cirurgia/get/all')
+    fetch(`${ API_BASE_URL }/cirurgia/get/all`)
         .then(response => response.json())
         .then(cirurgias => {
             // Ordena as cirurgias em ordem alfabética
@@ -240,7 +243,7 @@ function salvarNovaEspecie() {
     console.log("JSON para criar espécie:", JSON.stringify(novaEspecie));
 
     // 5. Faz a requisição POST para o backend
-    fetch('http://localhost:8080/especie/criar', { // Verifique se a URL está correta
+    fetch(`${ API_BASE_URL }/especie/criar`, { // Verifique se a URL está correta
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novaEspecie)
@@ -299,7 +302,7 @@ function salvarNovaRaca() {
     console.log("JSON para criar raça:", JSON.stringify(novaRaca));
 
     // Faz a requisição POST para o backend
-    fetch('http://localhost:8080/raca/criar', { // Substitua pela URL correta, se necessário
+    fetch(`${ API_BASE_URL }/raca/criar`, { // Substitua pela URL correta, se necessário
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novaRaca)
@@ -360,7 +363,7 @@ function salvarNovoComportamento() {
     console.log("JSON para criar comportamento:", JSON.stringify(novoComportamento));
 
     // Faz a requisição POST para o backend
-    fetch('http://localhost:8080/comportamento/criar', { // Certifique-se de que a URL está correta
+    fetch(`${ API_BASE_URL }/comportamento/criar`, { // Certifique-se de que a URL está correta
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novoComportamento)
@@ -420,7 +423,7 @@ function salvarNovaCirurgia() {
     console.log("JSON para criar cirurgia:", JSON.stringify(novaCirurgia));
 
     // 5. Faz a requisição POST para o backend
-    fetch('http://localhost:8080/cirurgia/criar', { // Verifique se a URL está correta
+    fetch(`${ API_BASE_URL }/cirurgia/criar`, { // Verifique se a URL está correta
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novaCirurgia)
@@ -525,7 +528,7 @@ function salvarAnimal() {
 
     // 5. Determina o método (POST ou PUT) e a URL da requisição
     const metodo = animalId ? 'PUT' : 'POST';
-    const url = animalId ? `http://localhost:8080/animal/put/${animalId}` : 'http://localhost:8080/animal/criar';
+    const url = animalId ? `${ API_BASE_URL }/animal/put/${animalId}` : `${ API_BASE_URL }/animal/criar`;
 
     // 6. Faz a requisição fetch
     fetch(url, {
@@ -560,7 +563,7 @@ function salvarAnimal() {
  * Carrega os animais do backend e os exibe em cards.
  */
 function carregarAnimais() {
-    fetch('http://localhost:8080/animal/get/all')
+    fetch(`${ API_BASE_URL }/animal/get/all`)
         .then(response => {
             if (!response.ok) {
                 console.error("Erro na resposta da API (animais):", response.status, response.statusText);
@@ -615,7 +618,7 @@ function preencherFormulario(animal) {
  * @param {number} id - ID do animal a ser excluído.
  */
 function excluirAnimal(id) {
-    fetch(`http://localhost:8080/animal/delete/${id}`, { method: 'DELETE' })
+    fetch(`${ API_BASE_URL }/animal/delete/${id}`, { method: 'DELETE' })
         .then(response => {
             if (!response.ok) {
                 return response.json().then(errorBody => {
@@ -862,7 +865,7 @@ function abrirModalNovaCirurgia() {
  * Carrega as espécies disponíveis no backend e as adiciona ao select do modal de nova raça.
  */
 function carregarEspeciesNoModalRaca() {
-    fetch('http://localhost:8080/especie/get/all')
+    fetch(`${ API_BASE_URL }/especie/get/all`)
         .then(response => response.json())
         .then(especies => {
             const selectEspecieRaca = document.getElementById('especieRaca');
@@ -889,7 +892,7 @@ function carregarEspeciesNoModalRaca() {
  * Carrega os portes disponíveis no backend e as adiciona ao select do modal de nova raça.
  */
 function carregarPortesNoModalRaca() {
-    fetch('http://localhost:8080/porte/get/all')
+    fetch(`${ API_BASE_URL }/porte/get/all`)
         .then(response => response.json())
         .then(portes => {
             const selectPorteRaca = document.getElementById('porteRaca');
