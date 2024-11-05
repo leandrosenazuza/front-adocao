@@ -330,7 +330,16 @@ nav ul li:hover a {
     border: 1px solid #ccc;
     margin-bottom: 20px;
     box-sizing: border-box;
+    border-radius: 5px;
+    box-decoration-break: clone;
+    
 }
+#descricaoCirurgia {
+    width: 350px; /* Define a largura fixa */
+    height: 50px; /* Define a altura fixa */
+    resize: none; /* Impede o redimensionamento */
+}
+
 
 #animalForm h2 {
     margin-top: 0;
@@ -338,6 +347,7 @@ nav ul li:hover a {
 
 .form-grid {
     display: grid;
+    flex-wrap: wrap;
     grid-template-columns: 1fr 1fr; /* Duas colunas com largura igual */
     gap: 20px; /* Espaçamento entre as colunas */
 }
