@@ -291,7 +291,8 @@ function carregarAnimais() {
                     const botaoAdotar = document.createElement('button');
                     botaoAdotar.classList.add('botao-adotar');
                     botaoAdotar.textContent = 'Quero Adotar!';
-                    botaoAdotar.addEventListener('click', abrirModalAdocao(animal.id));           
+                    //botaoAdotar.addEventListener('click', abrirModalAdocao(animal.id));           
+                    botaoAdotar.addEventListener('click', () => abrirModalAdocao(animal.id));
                     content.appendChild(botaoAdotar); 
     
                     card.appendChild(content);
@@ -335,30 +336,29 @@ function abrirModalAdocao(animalId) {
         modal.style.display = 'block';
         modal.setAttribute('role', 'dialog');
         
-        modal.innerHTML = `
-            <div class="modal-dialog" style="display: flex; justify-content: center; align-items: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);">
-                <div class="modal-content" style="width: 400px; padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-                 <div class="modal-header" style="margin-bottom: 20px; text-align: center;">
-            <h3 class="modal-title" style="margin: 0;">Formulário de Adoção</h3>
-             </div>
+        modal.innerHTML = `<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Formulário de Adoção</h3>
+        </div>
         <div class="modal-body">
             <form id="adocaoForm">
                 <input type="hidden" name="animalId" value="${animalId}">
-                <div style="margin-bottom: 15px;">
-                    <label class="form-label" style="display: block; margin-bottom: 5px;">Nome do Interessado</label>
-                    <input type="text" name="nomeInteressado" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Digite seu nome" required>
+                <div class="form-group">
+                    <label class="form-label">Nome do Interessado</label>
+                    <input type="text" name="nomeInteressado" placeholder="Digite seu nome" required>
                 </div>
-                <div style="margin-bottom: 15px;">
-                    <label class="form-label" style="display: block; margin-bottom: 5px;">Telefone do Interessado</label>
-                    <input type="tel" name="telefoneInteressado" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Digite seu telefone" required>
+                <div class="form-group">
+                    <label class="form-label">Telefone do Interessado</label>
+                    <input type="tel" name="telefoneInteressado" placeholder="Digite seu telefone" required>
                 </div>
-                <div style="margin-bottom: 20px;">
-                    <label class="form-label" style="display: block; margin-bottom: 5px;">Email do Interessado</label>
-                    <input type="email" name="emailInteressado" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Digite seu email" required>
+                <div class="form-group">
+                    <label class="form-label">Email do Interessado</label>
+                    <input type="email" name="emailInteressado" placeholder="Digite seu email" required>
                 </div>
-                <div style="display: flex; justify-content: flex-end; gap: 10px;">
-                    <button type="button" onclick="document.getElementById('modalAdocao').style.display='none'" style="padding: 8px 16px; background-color: #f5f5f5; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">Fechar</button>
-                    <button type="submit" style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Enviar</button>
+                <div class="button-group">
+                    <button type="button" onclick="document.getElementById('modalAdocao').style.display='none'" class="close">Fechar</button>
+                    <button type="submit" class="submit">Enviar</button>
                 </div>
             </form>
         </div>
