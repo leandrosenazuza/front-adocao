@@ -326,93 +326,144 @@ function carregarCirurgias() {
  * Abre o modal para adicionar uma nova raça.
  */
 function abrirModalAdocao() {
+    // Verifica se o modal já existe no DOM
     let modal = document.getElementById('modalAdocao');
-
+    
     if (!modal) {
-        // Modal container div
+        // Cria o modal principal
         modal = document.createElement('div');
         modal.id = 'modalAdocao';
-        modal.className = 'modal fade show';
-        modal.style.display = 'block';
-        modal.setAttribute('role', 'dialog');
+        modal.className = 'modal fade';
+        modal.setAttribute('tabindex', '-1');
+        modal.setAttribute('aria-labelledby', 'modalAdocaoLabel');
+        modal.setAttribute('aria-hidden', 'true');
 
+        // Cria o modal dialog
         const modalDialog = document.createElement('div');
         modalDialog.className = 'modal-dialog';
         modal.appendChild(modalDialog);
 
+        // Cria o conteúdo do modal
         const modalContent = document.createElement('div');
         modalContent.className = 'modal-content';
         modalDialog.appendChild(modalContent);
 
-        // Modal header
+        // Cabeçalho do modal
         const modalHeader = document.createElement('div');
         modalHeader.className = 'modal-header';
         modalContent.appendChild(modalHeader);
 
         const modalTitle = document.createElement('h5');
         modalTitle.className = 'modal-title';
+        modalTitle.id = 'modalAdocaoLabel';
         modalTitle.textContent = 'Formulário de Adoção';
         modalHeader.appendChild(modalTitle);
 
         const closeButton = document.createElement('button');
         closeButton.className = 'btn-close';
-        closeButton.setAttribute('type', 'button');
         closeButton.setAttribute('data-bs-dismiss', 'modal');
-        closeButton.onclick = function() {
+        closeButton.setAttribute('aria-label', 'Close');
+        closeButton.onclick = function () {
             modal.style.display = 'none';
         };
         modalHeader.appendChild(closeButton);
 
-        // Modal body
+        // Corpo do modal
         const modalBody = document.createElement('div');
         modalBody.className = 'modal-body';
         modalContent.appendChild(modalBody);
 
-        // Add form to modal body
+        // Formulário dentro do modal
         const form = document.createElement('form');
         form.id = 'adocaoForm';
 
-        const fields = [
-            { label: 'Nome do Interessado', name: 'nomeInteressado', type: 'text', placeholder: 'Digite seu nome' },
-            { label: 'Telefone do Interessado', name: 'telefoneInteressado', type: 'tel', placeholder: 'Digite seu telefone' },
-            { label: 'Email do Interessado', name: 'emailInteressado', type: 'email', placeholder: 'Digite seu email' },
-            { label: 'ID do Animal', name: 'animalId', type: 'number', placeholder: 'Digite o ID do animal' }
-        ];
+        // Campo Nome do Interessado
+        const formGroupNome = document.createElement('div');
+        formGroupNome.className = 'mb-3';
+        const labelNome = document.createElement('label');
+        labelNome.className = 'form-label';
+        labelNome.textContent = 'Nome do Interessado';
+        const inputNome = document.createElement('input');
+        inputNome.type = 'text';
+        inputNome.className = 'form-control';
+        inputNome.id = 'nomeInteressado';
+        inputNome.name = 'nomeInteressado';
+        inputNome.required = true;
+        formGroupNome.appendChild(labelNome);
+        formGroupNome.appendChild(inputNome);
+        form.appendChild(formGroupNome);
 
-        fields.forEach(field => {
-            const formGroup = document.createElement('div');
-            formGroup.className = 'mb-3';
+        // Campo Telefone do Interessado
+        const formGroupTelefone = document.createElement('div');
+        formGroupTelefone.className = 'mb-3';
+        const labelTelefone = document.createElement('label');
+        labelTelefone.className = 'form-label';
+        labelTelefone.textContent = 'Telefone do Interessado';
+        const inputTelefone = document.createElement('input');
+        inputTelefone.type = 'tel';
+        inputTelefone.className = 'form-control';
+        inputTelefone.id = 'telefoneInteressado';
+        inputTelefone.name = 'telefoneInteressado';
+        inputTelefone.required = true;
+        formGroupTelefone.appendChild(labelTelefone);
+        formGroupTelefone.appendChild(inputTelefone);
+        form.appendChild(formGroupTelefone);
 
-            const label = document.createElement('label');
-            label.className = 'form-label';
-            label.textContent = field.label;
-            formGroup.appendChild(label);
+        // Campo Email do Interessado
+        const formGroupEmail = document.createElement('div');
+        formGroupEmail.className = 'mb-3';
+        const labelEmail = document.createElement('label');
+        labelEmail.className = 'form-label';
+        labelEmail.textContent = 'Email do Interessado';
+        const inputEmail = document.createElement('input');
+        inputEmail.type = 'email';
+        inputEmail.className = 'form-control';
+        inputEmail.id = 'emailInteressado';
+        inputEmail.name = 'emailInteressado';
+        inputEmail.required = true;
+        formGroupEmail.appendChild(labelEmail);
+        formGroupEmail.appendChild(inputEmail);
+        form.appendChild(formGroupEmail);
 
-            const inputField = document.createElement('input');
-            inputField.type = field.type;
-            inputField.name = field.name;
-            inputField.className = 'form-control';
-            inputField.placeholder = field.placeholder;
-            inputField.required = true;
-            formGroup.appendChild(inputField);
+        // Campo ID do Animal
+        const formGroupAnimalId = document.createElement('div');
+        formGroupAnimalId.className = 'mb-3';
+        const labelAnimalId = document.createElement('label');
+        labelAnimalId.className = 'form-label';
+        labelAnimalId.textContent = 'ID do Animal';
+        const inputAnimalId = document.createElement('input');
+        inputAnimalId.type = 'number';
+        inputAnimalId.className = 'form-control';
+        inputAnimalId.id = 'animalId';
+        inputAnimalId.name = 'animalId';
+        inputAnimalId.required = true;
+        formGroupAnimalId.appendChild(labelAnimalId);
+        formGroupAnimalId.appendChild(inputAnimalId);
+        form.appendChild(formGroupAnimalId);
 
-            form.appendChild(formGroup);
-        });
-
+        // Botão de Envio
         const submitButton = document.createElement('button');
         submitButton.type = 'submit';
         submitButton.className = 'btn btn-primary';
         submitButton.textContent = 'Enviar';
         form.appendChild(submitButton);
 
+        // Adiciona o formulário ao corpo do modal
         modalBody.appendChild(form);
+
+        // Adiciona o modal ao corpo do documento
         document.body.appendChild(modal);
 
-        form.onsubmit = function(event) {
+        // Configura o evento de envio do formulário
+        form.onsubmit = function (event) {
             event.preventDefault();
 
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
+            const data = {
+                nomeInteressado: inputNome.value,
+                telefoneInteressado: inputTelefone.value,
+                emailInteressado: inputEmail.value,
+                animalId: parseInt(inputAnimalId.value, 10)
+            };
 
             fetch('http://localhost:8080/solicitacao/solicitar/criar', {
                 method: 'POST',
@@ -422,16 +473,19 @@ function abrirModalAdocao() {
             .then(response => response.json())
             .then(result => {
                 alert('Formulário enviado com sucesso!');
-                modal.style.display = 'none';
-                modal.form = null;
+                modal.style.display = 'none'; // Oculta o modal após o envio
             })
             .catch(error => {
                 console.error('Erro:', error);
             });
         };
-    } else {
-        modal.style.display = 'block';
     }
+
+    // Usa o Bootstrap para abrir o modal
+    const bootstrapModal = new bootstrap.Modal(modal, {});
+    bootstrapModal.show();
 }
+
+
 
 
