@@ -291,10 +291,7 @@ function carregarAnimais() {
                     const botaoAdotar = document.createElement('button');
                     botaoAdotar.classList.add('botao-adotar');
                     botaoAdotar.textContent = 'Quero Adotar!';
-                    botaoAdotar.addEventListener('click', () => {
-                        // Lógica para lidar com o clique no botão (ex: abrir um modal)
-                        alert(`Você quer adotar o(a) ${animal.nome}! Entre em contato conosco!`);
-                    });
+                    botaoAdotar.addEventListener('click', abrirModalAdocao);           
                     content.appendChild(botaoAdotar); 
     
                     card.appendChild(content);
@@ -309,9 +306,8 @@ function carregarAnimais() {
 
 
     }
-    
-   
 }
+
 
 function carregarRacas() {
     // ... (implementação para carregar raças)
@@ -323,6 +319,120 @@ function carregarComportamentos() {
 
 function carregarCirurgias() {
     // ... (implementação para carregar cirurgias)
+}
+
+
+/**
+ * Abre o modal para adicionar uma nova raça.
+ */
+function abrirModalAdocao() {
+    let modal = document.getElementById('modalAdocao');
+
+    // Create the modal only if it doesn't already exist
+    if (!modal) {
+        // Modal container div
+        modal = document.createElement('div');
+        modal.id = 'modalAdocao';
+        modal.className = 'modal fade show';
+        modal.style.display = 'block';
+        modal.setAttribute('role', 'dialog');
+
+        // Modal dialog div
+        const modalDialog = document.createElement('div');
+        modalDialog.className = 'modal-dialog';
+        modal.appendChild(modalDialog);
+
+        // Modal content div
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-content';
+        modalDialog.appendChild(modalContent);
+
+        // Modal header
+        const modalHeader = document.createElement('div');
+        modalHeader.className = 'modal-header';
+        modalContent.appendChild(modalHeader);
+
+        const modalTitle = document.createElement('h5');
+        modalTitle.className = 'modal-title';
+        modalTitle.textContent = 'Adoption Form';
+        modalHeader.appendChild(modalTitle);
+
+        const closeButton = document.createElement('button');
+        closeButton.className = 'btn-close';
+        closeButton.setAttribute('type', 'button');
+        closeButton.setAttribute('data-bs-dismiss', 'modal');
+        closeButton.onclick = function() {
+            modal.style.display = 'none';
+        };
+        modalHeader.appendChild(closeButton);
+
+        // Modal body
+        const modalBody = document.createElement('div');
+        modalBody.className = 'modal-body';
+        modalContent.appendChild(modalBody);
+
+        // Add form to modal body
+        const form = document.createElement('form');
+        form.id = 'adocaoForm';
+
+        // Form field with Bootstrap classes
+        const formGroup = document.createElement('div');
+        formGroup.className = 'mb-3';
+
+        const label = document.createElement('label');
+        label.className = 'form-label';
+        label.textContent = 'Enter your name';
+        formGroup.appendChild(label);
+
+        const inputField = document.createElement('input');
+        inputField.type = 'text';
+        inputField.name = 'name';
+        inputField.className = 'form-control';
+        inputField.placeholder = 'Enter your name';
+        inputField.required = true;
+        formGroup.appendChild(inputField);
+
+        form.appendChild(formGroup);
+
+        // Submit button with Bootstrap classes
+        const submitButton = document.createElement('button');
+        submitButton.type = 'submit';
+        submitButton.className = 'btn btn-primary';
+        submitButton.textContent = 'Submit';
+        form.appendChild(submitButton);
+
+        // Append form to modal body
+        modalBody.appendChild(form);
+
+        // Append modal to the body
+        document.body.appendChild(modal);
+
+        // Handle form submission
+        form.onsubmit = function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            // Send form data as a POST request (adjust URL as needed)
+            fetch('http://localhost:8080/solicitacao/solicitar/listarTodas', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert('Form submitted successfully!');
+                modal.style.display = 'none';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        };
+    } else {
+        // Display the modal if it already exists
+        modal.style.display = 'block';
+    }
 }
 
 
