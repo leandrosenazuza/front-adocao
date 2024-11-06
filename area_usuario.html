@@ -6,8 +6,6 @@
     <title>Pata Amada - Home</title>
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
-
-
 </head>
 <body class="body bodyhome">
     <div class="container-body container-home">
@@ -45,13 +43,15 @@
                 </thead>
                 <tbody id="listagem-solicitacoes">
                 </tbody>
-              </table>                  
+              </table>   
+              <div>
+                <button id="prevButton" onclick="paginaAnterior()">Anterior</button>
+                <span id="pageInfo"></span> <!-- Exibe o número da página atual -->
+                <button id="nextButton" onclick="proximaPagina()">Próxima</button>
+            </div>               
             </div>
           </section>
         </div>
-        
-    </div>
-    
     </div>
 </body>
 <script src="/js/jquery.js"></script>
