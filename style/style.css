@@ -477,3 +477,60 @@ button.submit {
     border-radius: 4px;
     cursor: pointer;
 }
+
+
+.table-solicitacao {
+    margin: 0 auto; /* Centraliza a tabela horizontalmente */
+    border-spacing: 15px; /* Espaçamento entre colunas */
+    width: 100%; /* Define uma largura para a tabela (ajuste conforme necessário) */
+    border-collapse: collapse; /* Remove espaçamentos duplos nas bordas */
+    border: 2px solid;
+}
+
+.table-solicitacao td {
+    text-align: center; /* Centraliza o conteúdo */
+}
+
+.table-solicitacao button {
+    padding: 8px 16px;
+    background-color: #f82121;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.banner-text {
+    text-align: center; 
+    padding: 20px;
+}
+
+.solicitacoes-title {
+    font-size: 24px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #333; /* Cor opcional para o título */
+}
+
+.table-solicitacao {
+    margin: 0 auto; /* Centraliza a tabela horizontalmente */
+    border-spacing: 15px; /* Espaçamento entre colunas */
+    width: 100%; /* Define a largura da tabela */
+}
+
+.table-solicitacao th,
+.table-solicitacao td {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.banner-title {
+    font-size: 36px;
+    color: #333;
+}
+
+.cor-vermelha {
+    color: #f82121; /* Ajusta a cor da parte destacada do título */
+}
+
