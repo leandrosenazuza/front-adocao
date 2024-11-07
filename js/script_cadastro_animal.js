@@ -84,7 +84,7 @@ function carregarRacasPorEspecie() {
 
     console.log("Carregando raças por espécie...", especieId);
 
-    fetch(API_BASE_URL + '/raca/get/especie/${especieId}')
+    fetch(API_BASE_URL + '/raca/get/especie/' + especieId)
         .then(response => {
             if (!response.ok) {
                 return response.json().then(err => {
@@ -111,7 +111,7 @@ function carregarRacasPorEspecie() {
             if (!document.querySelector('.botao-excluir-raca')) {
                 const btnExcluirRaca = document.createElement('button');
                 btnExcluirRaca.textContent = 'Excluir Raça';
-                btnExcluirRaca.classList.add('botao-excluir-raca');
+                btnExcluirRaca.style.backgroundColor = 'red';
                 btnExcluirRaca.addEventListener('click', () => {
                     const racaSelecionadaId = selectRaca.value;
                     if (racaSelecionadaId !== "") {
@@ -476,7 +476,7 @@ function salvarAnimal() {
     const isCastrado = document.getElementById('isCastrado').checked;
     const isVermifugado = document.getElementById('isVermifugado').checked;
     const isVacinado = document.getElementById('isVacinado').checked;
-    const descricaoAnimal = document.getElementById('descricaoAnimal').value;
+    //const descricaoAnimal = document.getElementById('descricaoAnimal')?.value;
     const foto = document.getElementById('foto').value;
 
     // 2. Validações
@@ -496,7 +496,7 @@ function salvarAnimal() {
     }
     idade = parseFloat(idade);
 
-    if (!nome || !racaId || !comportamentoId || !descricaoAnimal || !foto) {
+    if (!nome || !racaId || !comportamentoId || !foto) {
         alert("Por favor, preencha todos os campos obrigatórios.");
         return;
     }
@@ -518,7 +518,7 @@ function salvarAnimal() {
         isCastrado,
         isVermifugado,
         isVacinado,
-        descricaoAnimal,
+        //descricaoAnimal,
         foto
     };
 
@@ -527,7 +527,7 @@ function salvarAnimal() {
 
     // 5. Determina o método (POST ou PUT) e a URL da requisição
     const metodo = animalId ? 'PUT' : 'POST';
-    const url = animalId ? `http://localhost:8080/animal/put/${animalId}` : API_BASE_URL + '/animal/criar';
+    const url = animalId ? API_BASE_URL + '/animal/put/${animalId}' : API_BASE_URL + '/animal/criar';
 
     // 6. Faz a requisição fetch
     fetch(url, {
@@ -562,7 +562,7 @@ function salvarAnimal() {
  * Carrega os animais do backend e os exibe em cards.
  */
 function carregarAnimais() {
-    fetch(`http://localhost:8080/animal/get/all`)
+    fetch(API_BASE_URL + '/animal/get/all')
         .then(response => {
             if (!response.ok) {
                 console.error("Erro na resposta da API (animais):", response.status, response.statusText);
@@ -617,7 +617,7 @@ function preencherFormulario(animal) {
  * @param {number} id - ID do animal a ser excluído.
  */
 function excluirAnimal(id) {
-    fetch(`http://localhost:8080/animal/delete/${id}`, { method: 'DELETE' })
+    fetch(API_BASE_URL + '/animal/delete/${id}', { method: 'DELETE' })
         .then(response => {
             if (!response.ok) {
                 return response.json().then(errorBody => {
@@ -714,6 +714,7 @@ function exibirAnimaisEmCards(animais) {
         const btnEditar = document.createElement('button');
         btnEditar.classList.add('botao-acao', 'botao-editar');
         btnEditar.textContent = 'Editar';
+        btnEditar.classList.add('btn-list-editar');
         btnEditar.addEventListener('click', () => preencherFormulario(animal));
         botoesContainer.appendChild(btnEditar);
 
@@ -721,6 +722,7 @@ function exibirAnimaisEmCards(animais) {
         const btnExcluir = document.createElement('button');
         btnExcluir.classList.add('botao-acao', 'botao-excluir');
         btnExcluir.textContent = 'Excluir';
+        btnExcluir.classList.add('btn-list-excluir');
         btnExcluir.addEventListener('click', () => excluirAnimal(animal.id));
         botoesContainer.appendChild(btnExcluir);
 
@@ -728,6 +730,7 @@ function exibirAnimaisEmCards(animais) {
         const btnAdotado = document.createElement('button');
         btnAdotado.classList.add('botao-acao', 'botao-adotado');
         btnAdotado.textContent = 'Adotado';
+        btnAdotado.classList.add('btn-list-adotado');
         btnAdotado.addEventListener('click', () => {
             // Lógica para marcar como adotado (implementar)
             alert(`Implementar lógica para marcar o animal ${animal.nome} como adotado`);
@@ -752,11 +755,10 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarAnimais();
     carregarSexos();
 
-    // --- Event Listener para o formulário de cadastro de animal ---
     const formAnimal = document.getElementById('formAnimal');
     if (formAnimal) {
         formAnimal.addEventListener('submit', (event) => {
-            event.preventDefault(); // Impede o envio padrão do formulário
+            event.preventDefault();
             salvarAnimal();
         });
     } else {
@@ -864,7 +866,7 @@ function abrirModalNovaCirurgia() {
  * Carrega as espécies disponíveis no backend e as adiciona ao select do modal de nova raça.
  */
 function carregarEspeciesNoModalRaca() {
-    fetch(`http://localhost:8080/especie/get/all`)
+    fetch(API_BASE_URL + '/especie/get/all')
         .then(response => response.json())
         .then(especies => {
             const selectEspecieRaca = document.getElementById('especieRaca');
@@ -891,7 +893,7 @@ function carregarEspeciesNoModalRaca() {
  * Carrega os portes disponíveis no backend e as adiciona ao select do modal de nova raça.
  */
 function carregarPortesNoModalRaca() {
-    fetch(`http://localhost:8080/porte/get/all`)
+    fetch(API_BASE_URL + '/porte/get/all')
         .then(response => response.json())
         .then(portes => {
             const selectPorteRaca = document.getElementById('porteRaca');
@@ -1039,3 +1041,11 @@ function fecharModalNovaCirurgia() {
      console.error("Formulário 'formNovaCirurgia' não encontrado!");
  }
 
+ document.addEventListener('DOMContentLoaded', function() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+    if (isLoggedIn !== 'true') {
+        alert('Acesso negado! Faça login para acessar esta página.');
+        window.location.href = '/login.html';
+    }
+});
