@@ -1,4 +1,4 @@
-/*cadastro_animal */
+var API_BASE_URL = `http://localhost:8080`;
 
 /**
  * Executa as ações iniciais ao carregar a página.
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * Carrega a lista de animais do backend e a exibe na tabela.
  */
 function carregarAnimais() {
-    fetch('http://localhost:8080/animal/get/all')
+    fetch(API_BASE_URL + `/animal/get/all`)
         .then(response => response.json())
         .then(animais => {
             const tbody = document.querySelector('#tabelaAnimais tbody');
@@ -68,7 +68,7 @@ function carregarAnimais() {
  * Carrega a lista de raças do backend e preenche o select correspondente.
  */
 function carregarRacas() {
-    fetch('http://localhost:8080/raca/get/all')
+    fetch(API_BASE_URL + `/raca/get/all`)
         .then(response => response.json())
         .then(racas => {
             const selectRaca = document.getElementById('raca');
@@ -85,7 +85,7 @@ function carregarRacas() {
  * Carrega a lista de comportamentos do backend e preenche o select correspondente.
  */
 function carregarComportamentos() {
-    fetch('http://localhost:8080/comportamento/get/all')
+    fetch(API_BASE_URL + `/comportamento/get/all`)
         .then(response => response.json())
         .then(comportamentos => {
             const selectComportamento = document.getElementById('comportamento');
@@ -102,11 +102,10 @@ function carregarComportamentos() {
  * Carrega a lista de cirurgias do backend e preenche o select correspondente.
  */
 function carregarCirurgias() {
-    fetch('http://localhost:8080/cirurgia/get/all')
+    fetch(API_BASE_URL + `/cirurgia/get/all`)
         .then(response => response.json())
         .then(cirurgias => {
             const selectCirurgia = document.getElementById('cirurgia');
-            // Adiciona uma opção vazia
             const emptyOption = document.createElement('option');
             emptyOption.value = ''; 
             emptyOption.textContent = 'Selecione (opcional)'; 
@@ -141,7 +140,7 @@ function salvarAnimal() {
     };
 
     const metodo = animalId ? 'PUT' : 'POST';
-    const url = animalId ? `http://localhost:8080/animal/put/${animalId}` : 'http://localhost:8080/animal/criar';
+    const url = animalId ? API_BASE_URL + `/animal/put/${animalId}` : API_BASE_URL + `/animal/criar`;
 
     fetch(url, {
         method: metodo,
@@ -191,7 +190,7 @@ function preencherFormulario(animal) {
  * @param {number} id - O ID do animal a ser excluído.
  */
 function excluirAnimal(id) {
-    fetch(`http://localhost:8080/animal/delete/${id}`, {
+    fetch(API_BASE_URL + `/animal/delete/${id}`, {
         method: 'DELETE'
     })
     .then(response => {
@@ -247,11 +246,11 @@ function carregarAnimais() {
     if(document.getElementById('filtroEspecie').value != null){
 
         const especieId = document.getElementById('filtroEspecie').value;
-        let url = 'http://localhost:8080/animal/get/all';
+        let url = API_BASE_URL + `/animal/get/all`;
 
         // Se uma espécie específica foi selecionada, altera a URL da requisição
         if (especieId !== 'todos') {
-            url = `http://localhost:8080/animal/get/especie/${especieId}`; 
+            url = API_BASE_URL + `/animal/get/especie/${especieId}`; 
         }
     
         fetch(url)
@@ -375,7 +374,7 @@ function abrirModalAdocao(animalId) {
             const formData = new FormData(this);
             const data = Object.fromEntries(formData.entries());
 
-            fetch('http://localhost:8080/solicitacao/solicitar/criar', {
+            fetch(API_BASE_URL + `/solicitacao/solicitar/criar`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),

@@ -1,3 +1,5 @@
+var API_BASE_URL = `http://localhost:8080`;
+
 let currentPage = 0;
 let totalPages = 0;
 let pageSize = 5;
@@ -34,7 +36,6 @@ function exibirTabela(data) {
         table.innerHTML += row;
     }
 
-    // Atualizar o estado dos botões de navegação
     document.getElementById('prevButton').disabled = currentPage === 0;
         document.getElementById('nextButton').disabled = currentPage >= totalPages - 1;
     
@@ -42,12 +43,12 @@ function exibirTabela(data) {
 }
 
 function fetchData(page, size) {
-    return fetch(`http://localhost:8080/solicitacao/solicitar/listarTodas?page=${page}&pageSize=${size}`)
+    return fetch(API_BASE_URL + `/solicitacao/solicitar/listarTodas?page=${page}&pageSize=${size}`)
         .then(response => response.json());
 }
 
 function excluirSolicitacao(id) {
-    return fetch(`http://localhost:8080/solicitacao/solicitar/apagar/${id}`, {
+    return fetch(API_BASE_URL + `/solicitacao/solicitar/apagar/${id}`, {
         method: 'DELETE',
     })
     .then(response => {
