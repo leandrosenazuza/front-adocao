@@ -6,8 +6,6 @@
     <title>Pata Amada - Home</title>
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
-
-
 </head>
 <body class="body bodyhome">
     <div class="container-body container-home">
@@ -27,23 +25,33 @@
             </nav>
         </header>
 
-        <div class="wrapper wrapper-body">
-            <section class="banner banner-sobre">
-              <div class="banner-text">
-                <h1 class="banner-title">Pata <span class="cor-vermelha">Amada</span></h1>
-                <p class="banner-text"><br> Esta página está em manutenção! Em breve mais informações!
-                </p>
-                </div>
-              <div class="banner-image">
-                <img class="banner-img" src="/Images/catdog.png">
-              </div>
-            </section>
+        <div class="quadro-solicitacao">
+              <h1 class="banner-title">Pata <span class="cor-vermelha">Amada</span></h1>
+              <h2>Solicitações de Adoção</h2>
+              <table class="table-solicitacao">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Interessado</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Nome do Animal</th>
+                    <th scope="col">Ação</th>
+                  </tr>
+                </thead>
+                <tbody id="listagem-solicitacoes">
+                </tbody>
+              </table>   
+              <div>
+                <button id="prevButton">Anterior</button>
+                <span id="pageInfo"></span>
+                <button id="nextButton">Próxima</button>
+            </div>                            
         </div>
     </div>
-    
-    </div><!--container-->
 </body>
 <script src="/js/jquery.js"></script>
 <script src="/js/script.js"></script>
+<script src="/js/area-usuario.js"></script>
 
 </html>
