@@ -80,3 +80,11 @@ document.getElementById('prevButton').addEventListener('click', () => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+    if (isLoggedIn !== 'true') {
+        alert('Acesso negado! Faça login para acessar esta página.');
+        window.location.href = '/login.html';
+    }
+});
