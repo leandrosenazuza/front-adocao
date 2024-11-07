@@ -33,79 +33,95 @@
                 <input type="hidden" id="animalId">
 
                 <div class="coluna">
-                    <label for="especie">Espécie:</label>
-                    <select id="especie" name="especieId" required>
-                        <option value="">Selecione</option>
-                    </select>
-                    <button type="button" id="btnNovaEspecie">Nova Espécie</button><br><br>
-
-                    <label for="raca">Raça:</label>
-                    <select id="raca" name="racaId" required>
-                        <option value="">Selecione</option>
-                    </select>
-                    <button type="button" id="btnNovaRaca">Nova Raça</button><br><br>
-
-                    <div class="sexo-group">
-    
-                        <input type="radio" id="sexoMacho" name="sexo" value="MACHO" required>
-                        <label for="sexoMacho">Macho</label>
-                        <input type="radio" id="sexoFemea" name="sexo" value="FEMEA" required>
-                        <label for="sexoFemea">Fêmea</label>
+                    <div class="insercao">
+                        <label for="especie">Espécie:</label>
+                        <select id="especie" name="especieId" required>
+                            <option value="">Selecione</option>
+                        </select>
+                        <button type="button" id="btnNovaEspecie">Nova Espécie</button><br><br>
                     </div>
-
-                    <label for="nome"></label>
-                    <input type="text" id="nome" placeholder=" Nome do animal" name="nome" required><br>
-
-                    <label for="idade"></label>
-                    <input type="number" id="idade" placeholder=" Idade do animal" name="idade" required><br>
-
-                    <label for="comportamento">Comportamento:</label>
-                    <select id="comportamento" name="comportamentoId" required>
-                        <option value="">Selecione</option>
-                    </select>
-                    <button type="button" id="btnNovoComportamento">Novo Comportamento</button><br><br>
+                    <div class="insercao">
+                        <label for="raca">Raça:</label>
+                        <select id="raca" name="racaId" required>
+                            <option value="">Selecione</option>
+                        </select>
+                        <button type="button" id="btnNovaRaca">Nova Raça</button><br><br>    
+                    </div>
+                    <div class="insercao">
+                        <div class="sexo-group">
+    
+                            <input type="radio" id="sexoMacho" name="sexo" value="MACHO" required>
+                            <label for="sexoMacho">Macho</label>
+                            <input type="radio" id="sexoFemea" name="sexo" value="FEMEA" required>
+                            <label for="sexoFemea">Fêmea</label>
+                        </div>
+                    </div>
+                    <div class="insercao-nome-idade">
+                        <label for="nome"></label>
+                        <input type="text" id="nome" placeholder=" Nome do animal" name="nome" required><br>    
+                        <label for="idade"></label>
+                        <input type="number" id="idade" placeholder=" Idade do animal" name="idade" required min="0" step="1"><br>
+                    </div>
+                    <div class="insercao">
+                        <label for="comportamento">Comportamento:</label>
+                        <select id="comportamento" name="comportamentoId" required>
+                            <option value="">Selecione</option>
+                        </select>
+                        <button type="button" id="btnNovoComportamento">Novo Comportamento</button><br><br>
+                    </div>
                 </div>
 
                 <div class="coluna">
-                    <label for="cirurgia">Cirurgia:</label>
-                    <select id="cirurgia" name="cirurgiaId">
-                        <option value="">Selecione</option>
-                    </select>
-                    <button type="button" id="btnNovaCirurgia">Nova Cirurgia</button><br><br>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="isCastrado" name="isCastrado">
-                        <label for="isCastrado">Castrado</label><br>
+                    <div class="insercao">
+                        <label for="cirurgia">Cirurgia:</label>
+                        <select id="cirurgia" name="cirurgiaId">
+                            <option value="">Selecione</option>
+                        </select>
+                        <button type="button" id="btnNovaCirurgia">Nova Cirurgia</button><br><br>
                     </div>
 
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="isVermifugado" name="isVermifugado">
-                        <label for="isVermifugado">Vermifugado</label><br>
+                    <div class="insercao">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="isCastrado" name="isCastrado">
+                            <label for="isCastrado">Castrado</label><br>
+                        </div>
                     </div>
 
+                    <div class="insercao">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="isVermifugado" name="isVermifugado">
+                            <label for="isVermifugado">Vermifugado</label><br>
+                        </div>
+                    </div>
+                   
+                  <div class="insercao">
                     <div class="checkbox-group">
                         <input type="checkbox" id="isVacinado" name="isVacinado">
                         <label for="isVacinado">Vacinado</label><br>
                     </div>
+                  </div>
 
+                  <div class="insercao">
                     <div class="checkbox-group">
                         <label>Cirurgia Realizada:</label><br>
                         <input type="radio" id="cirurgiaSim" name="cirurgiaRealizada" value="SIM" required>
                         <label for="cirurgiaSim">Sim</label>
-                        <input type="radio" id="cirurgiaNao" name="cirurgiaRealizada" value="NAO" required checked>
+                        <input type="radio" id="cirurgiaNao" name="cirurgiaRealizada" value="NAO" required checked >
                         <label for="cirurgiaNao">Não</label>
-                    </div>
-
-                    <label for="descricaoCirurgia"></label><br>
-                    <textarea id="descricaoCirurgia" placeholder=" Descrição da Cirurgia:" required></textarea><br><br>
-
                     
-
+                    <label for="descricaoCirurgia"></label><br>
+                    <textarea id="descricaoCirurgia" placeholder=" Descrição da Cirurgia:" style="width: 100%;"></textarea><br><br>
+                        </div>
+                </div>
+                  <div class="insercao">
                     <label for="foto">Foto:</label>
                     <input type="text" id="foto" name="foto" placeholder=" Insira a URL da foto aqui" required><br>
+                  </div>
                 </div>
             </div>
-            <button type="submit">Salvar</button>
+            <div class="botao-salvar">
+                <button type="submit" >Salvar</button>
+            </div>
         </form>
     </div>
 
@@ -120,11 +136,15 @@
     <div class="modal-content">
         <span class="close-button" onclick="fecharModalNovaEspecie()">×</span>
         <h2>Nova Espécie</h2>
-        <form id="formNovaEspecie">
-            <label for="descricaoEspecie">Descrição da Espécie:</label>
-            <input type="text" id="descricaoEspecie" name="descricaoEspecie" required>
-            <button type="submit" class="modal-button">Salvar</button>
-        </form>
+        <div class="insercao">
+            <form id="formNovaEspecie">
+                <label for="descricaoEspecie">Descrição da Espécie:</label>
+                <input type="text" id="descricaoEspecie" name="descricaoEspecie" required>
+                <div class="botao-salvar">
+                    <button type="submit" >Salvar</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -132,14 +152,19 @@
     <div class="modal-content">
         <span class="close-button" onclick="fecharModalNovaRaca()">×</span>
         <h2>Nova Raça</h2>
-        <form id="formNovaRaca">
-            <label for="descricaoRaca">Descrição da Raça:</label>
-            <input type="text" id="descricaoRaca" name="descricaoRaca" required>
-            <label for="especieRaca">Espécie:</label>
-            <select id="especieRaca" name="especieId" required></select>
-            <label for="porteRaca">Porte:</label>
-            <select id="porteRaca" name="porteId" required></select>
-            <button type="submit" class="modal-button">Salvar</button>
+        
+        <div class="insercao">
+            <form id="formNovaRaca">
+                <label for="descricaoRaca">Descrição da Raça:</label>
+                <input type="text" id="descricaoRaca" name="descricaoRaca" required>
+                <label for="especieRaca">Espécie:</label>
+                <select id="especieRaca" name="especieId" required></select>
+                <label for="porteRaca">Porte:</label>
+                <select id="porteRaca" name="porteId" required></select>
+                <div class="botao-salvar">
+                    <button type="submit" >Salvar</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>
@@ -148,10 +173,16 @@
     <div class="modal-content">
         <span class="close-button" onclick="fecharModalNovoComportamento()">×</span>
         <h2>Novo Comportamento</h2>
-        <form id="formNovoComportamento">
-            <label for="descricaoComportamento">Descrição do Comportamento:</label>
-            <input type="text" id="descricaoComportamento" name="descricaoComportamento" required>
-            <button type="submit" class="modal-button">Salvar</button>
+
+            <div class="insercao">
+                <form id="formNovoComportamento">
+                <label for="descricaoComportamento">Descrição do Comportamento:</label>
+                <input type="text" id="descricaoComportamento" name="descricaoComportamento" required>
+                
+                <div class="botao-salvar">
+                    <button type="submit" >Salvar</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>
@@ -160,10 +191,16 @@
     <div class="modal-content">
         <span class="close-button" onclick="fecharModalNovaCirurgia()">×</span>
         <h2>Nova Cirurgia</h2>
-        <form id="formNovaCirurgia">
-            <label for="descricaoNovaCirurgia">Descrição da Nova Cirurgia:</label>
-            <input type="text" id="descricaoNovaCirurgia" name="descricaoNovaCirurgia" required>
-            <button type="submit" class="modal-button">Enviar</button>
+            <div class="insercao">
+                <form id="formNovaCirurgia">
+
+                <label for="descricaoNovaCirurgia">Descrição da Nova Cirurgia:</label>
+                <input type="text" id="descricaoNovaCirurgia" name="descricaoNovaCirurgia" required>
+                <div class="botao-salvar">
+                    <button type="submit" >Salvar</button>
+                </div>
+            </div>
+            
         </form>
     </div>
 </div>
