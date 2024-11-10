@@ -8,11 +8,13 @@
 /**
  * Carrega as espécies do backend e preenche o select de espécies.
  */
-import { API_BASE_URL } from './config.js'; 
+var API_BASE_URL = `https://api-adocao-production.up.railway.app`;
+
+//var API_BASE_URL = `http://localhost:8080`;
 
 function carregarEspecies() {
     console.log("Carregando espécies...");
-    fetch('${API_BASE_URL}/especie/get/all')
+    fetch(API_BASE_URL + '/especie/get/all')
         .then(response => {
             if (!response.ok) {
                 console.error("Erro na resposta da API:", response.status, response.statusText);
@@ -49,7 +51,7 @@ function carregarEspecies() {
  */
 function carregarRacas() {
     console.log("Carregando raças...");
-    fetch('${API_BASE_URL}/raca/get/all')
+    fetch(API_BASE_URL + '/raca/get/all')
         .then(response => response.json())
         .then(racas => {
             racas.sort((a, b) => a.descricaoRaca.localeCompare(b.descricaoRaca));
@@ -84,7 +86,7 @@ function carregarRacasPorEspecie() {
 
     console.log("Carregando raças por espécie...", especieId);
 
-    fetch('${API_BASE_URL}/raca/get/especie/${especieId}')
+    fetch(API_BASE_URL + '/raca/get/especie/' + especieId)
         .then(response => {
             if (!response.ok) {
                 return response.json().then(err => {
@@ -111,7 +113,7 @@ function carregarRacasPorEspecie() {
             if (!document.querySelector('.botao-excluir-raca')) {
                 const btnExcluirRaca = document.createElement('button');
                 btnExcluirRaca.textContent = 'Excluir Raça';
-                btnExcluirRaca.classList.add('botao-excluir-raca');
+                btnExcluirRaca.style.backgroundColor = 'red';
                 btnExcluirRaca.addEventListener('click', () => {
                     const racaSelecionadaId = selectRaca.value;
                     if (racaSelecionadaId !== "") {
@@ -136,7 +138,7 @@ function carregarRacasPorEspecie() {
  * @param {number} racaId - O ID da raça a ser excluída.
  */
 function excluirRaca(racaId) {
-    fetch('${API_BASE_URL}/raca/delete/${racaId}', { method: 'DELETE' })
+    fetch(API_BASE_URL + '/raca/delete/${racaId}', { method: 'DELETE' })
         .then(response => {
             if (response.ok) {
                 console.log('Raça excluída com sucesso!');
@@ -175,7 +177,7 @@ function carregarSexos() {
  * Carrega os comportamentos do backend e preenche o select de comportamentos.
  */
 function carregarComportamentos() {
-    fetch('${API_BASE_URL}/comportamento/get/all')
+    fetch(API_BASE_URL + '/comportamento/get/all')
         .then(response => response.json())
         .then(comportamentos => {
             // Ordena os comportamentos em ordem alfabética
@@ -198,7 +200,7 @@ function carregarComportamentos() {
  * Carrega as cirurgias do backend e preenche o select de cirurgias.
  */
 function carregarCirurgias() {
-    fetch('${API_BASE_URL}/cirurgia/get/all')
+    fetch(API_BASE_URL + '/cirurgia/get/all')
         .then(response => response.json())
         .then(cirurgias => {
             // Ordena as cirurgias em ordem alfabética
@@ -242,7 +244,7 @@ function salvarNovaEspecie() {
     console.log("JSON para criar espécie:", JSON.stringify(novaEspecie));
 
     // 5. Faz a requisição POST para o backend
-    fetch('${API_BASE_URL}/especie/criar', { // Verifique se a URL está correta
+    fetch(API_BASE_URL + '/especie/criar', { // Verifique se a URL está correta
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novaEspecie)
@@ -301,7 +303,7 @@ function salvarNovaRaca() {
     console.log("JSON para criar raça:", JSON.stringify(novaRaca));
 
     // Faz a requisição POST para o backend
-    fetch('${API_BASE_URL}/raca/criar', { // Substitua pela URL correta, se necessário
+    fetch(API_BASE_URL + '/raca/criar', { // Substitua pela URL correta, se necessário
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novaRaca)
@@ -362,7 +364,7 @@ function salvarNovoComportamento() {
     console.log("JSON para criar comportamento:", JSON.stringify(novoComportamento));
 
     // Faz a requisição POST para o backend
-    fetch('${API_BASE_URL}/comportamento/criar', { // Certifique-se de que a URL está correta
+    fetch(API_BASE_URL + '/comportamento/criar', { // Certifique-se de que a URL está correta
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novoComportamento)
@@ -422,7 +424,7 @@ function salvarNovaCirurgia() {
     console.log("JSON para criar cirurgia:", JSON.stringify(novaCirurgia));
 
     // 5. Faz a requisição POST para o backend
-    fetch('${API_BASE_URL}/cirurgia/criar', { // Verifique se a URL está correta
+    fetch(API_BASE_URL + '/cirurgia/criar', { // Verifique se a URL está correta
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novaCirurgia)
@@ -476,7 +478,7 @@ function salvarAnimal() {
     const isCastrado = document.getElementById('isCastrado').checked;
     const isVermifugado = document.getElementById('isVermifugado').checked;
     const isVacinado = document.getElementById('isVacinado').checked;
-    const descricaoAnimal = document.getElementById('descricaoAnimal').value;
+    //const descricaoAnimal = document.getElementById('descricaoAnimal')?.value;
     const foto = document.getElementById('foto').value;
 
     // 2. Validações
@@ -496,7 +498,7 @@ function salvarAnimal() {
     }
     idade = parseFloat(idade);
 
-    if (!nome || !racaId || !comportamentoId || !descricaoAnimal || !foto) {
+    if (!nome || !racaId || !comportamentoId || !foto) {
         alert("Por favor, preencha todos os campos obrigatórios.");
         return;
     }
@@ -518,7 +520,7 @@ function salvarAnimal() {
         isCastrado,
         isVermifugado,
         isVacinado,
-        descricaoAnimal,
+        //descricaoAnimal,
         foto
     };
 
@@ -527,7 +529,7 @@ function salvarAnimal() {
 
     // 5. Determina o método (POST ou PUT) e a URL da requisição
     const metodo = animalId ? 'PUT' : 'POST';
-    const url = animalId ? `${API_BASE_URL}/animal/put/${animalId}` : '${API_BASE_URL}/animal/criar';
+    const url = animalId ? API_BASE_URL + '/animal/put/${animalId}' : API_BASE_URL + '/animal/criar';
 
     // 6. Faz a requisição fetch
     fetch(url, {
@@ -562,7 +564,7 @@ function salvarAnimal() {
  * Carrega os animais do backend e os exibe em cards.
  */
 function carregarAnimais() {
-    fetch(`${API_BASE_URL}/animal/get/all`)
+    fetch(API_BASE_URL + '/animal/get/all')
         .then(response => {
             if (!response.ok) {
                 console.error("Erro na resposta da API (animais):", response.status, response.statusText);
@@ -617,7 +619,7 @@ function preencherFormulario(animal) {
  * @param {number} id - ID do animal a ser excluído.
  */
 function excluirAnimal(id) {
-    fetch(`${API_BASE_URL}/animal/delete/${id}`, { method: 'DELETE' })
+    fetch(API_BASE_URL + '/animal/delete/${id}', { method: 'DELETE' })
         .then(response => {
             if (!response.ok) {
                 return response.json().then(errorBody => {
@@ -714,6 +716,7 @@ function exibirAnimaisEmCards(animais) {
         const btnEditar = document.createElement('button');
         btnEditar.classList.add('botao-acao', 'botao-editar');
         btnEditar.textContent = 'Editar';
+        btnEditar.classList.add('btn-list-editar');
         btnEditar.addEventListener('click', () => preencherFormulario(animal));
         botoesContainer.appendChild(btnEditar);
 
@@ -721,6 +724,7 @@ function exibirAnimaisEmCards(animais) {
         const btnExcluir = document.createElement('button');
         btnExcluir.classList.add('botao-acao', 'botao-excluir');
         btnExcluir.textContent = 'Excluir';
+        btnExcluir.classList.add('btn-list-excluir');
         btnExcluir.addEventListener('click', () => excluirAnimal(animal.id));
         botoesContainer.appendChild(btnExcluir);
 
@@ -728,6 +732,7 @@ function exibirAnimaisEmCards(animais) {
         const btnAdotado = document.createElement('button');
         btnAdotado.classList.add('botao-acao', 'botao-adotado');
         btnAdotado.textContent = 'Adotado';
+        btnAdotado.classList.add('btn-list-adotado');
         btnAdotado.addEventListener('click', () => {
             // Lógica para marcar como adotado (implementar)
             alert(`Implementar lógica para marcar o animal ${animal.nome} como adotado`);
@@ -752,11 +757,10 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarAnimais();
     carregarSexos();
 
-    // --- Event Listener para o formulário de cadastro de animal ---
     const formAnimal = document.getElementById('formAnimal');
     if (formAnimal) {
         formAnimal.addEventListener('submit', (event) => {
-            event.preventDefault(); // Impede o envio padrão do formulário
+            event.preventDefault();
             salvarAnimal();
         });
     } else {
@@ -864,7 +868,7 @@ function abrirModalNovaCirurgia() {
  * Carrega as espécies disponíveis no backend e as adiciona ao select do modal de nova raça.
  */
 function carregarEspeciesNoModalRaca() {
-    fetch(`${API_BASE_URL}/especie/get/all`)
+    fetch(API_BASE_URL + '/especie/get/all')
         .then(response => response.json())
         .then(especies => {
             const selectEspecieRaca = document.getElementById('especieRaca');
@@ -891,7 +895,7 @@ function carregarEspeciesNoModalRaca() {
  * Carrega os portes disponíveis no backend e as adiciona ao select do modal de nova raça.
  */
 function carregarPortesNoModalRaca() {
-    fetch(`${API_BASE_URL}/porte/get/all`)
+    fetch(API_BASE_URL + '/porte/get/all')
         .then(response => response.json())
         .then(portes => {
             const selectPorteRaca = document.getElementById('porteRaca');
@@ -1039,3 +1043,11 @@ function fecharModalNovaCirurgia() {
      console.error("Formulário 'formNovaCirurgia' não encontrado!");
  }
 
+ document.addEventListener('DOMContentLoaded', function() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+    if (isLoggedIn !== 'true') {
+        alert('Acesso negado! Faça login para acessar esta página.');
+        window.location.href = '/login.html';
+    }
+});

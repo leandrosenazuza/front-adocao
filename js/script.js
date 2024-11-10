@@ -1,4 +1,6 @@
-var API_BASE_URL = `https://21d625ab07a06090387fcb2d756378e3.serveo.net`;
+var API_BASE_URL = `https://api-adocao-production.up.railway.app`;
+
+//var API_BASE_URL = `http://localhost:8080`;
 
 /**
  * Executa as ações iniciais ao carregar a página.
