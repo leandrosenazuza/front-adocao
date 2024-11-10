@@ -1,4 +1,6 @@
+
 var API_BASE_URL = `api-adocao-production.up.railway.app`;
+
 
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault(); 

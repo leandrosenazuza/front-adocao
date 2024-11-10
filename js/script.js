@@ -1,5 +1,6 @@
 var API_BASE_URL = `api-adocao-production.up.railway.app`;
 
+
 /**
  * Executa as ações iniciais ao carregar a página.
  */

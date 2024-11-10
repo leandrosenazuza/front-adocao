@@ -1,5 +1,6 @@
 var API_BASE_URL = `api-adocao-production.up.railway.app`;
 
+
 let currentPage = 0;
 let totalPages = 0;
 let pageSize = 5;
