@@ -1,4 +1,4 @@
-var API_BASE_URL = `http://localhost:8080`;
+var API_BASE_URL = `api-adocao-production.up.railway.app`;
 
 let currentPage = 0;
 let totalPages = 0;
