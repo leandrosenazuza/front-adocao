@@ -8,7 +8,9 @@
 /**
  * Carrega as espécies do backend e preenche o select de espécies.
  */
-var API_BASE_URL = `http://localhost:8080`;
+var API_BASE_URL = `https://api-adocao-production.up.railway.app`;
+
+//var API_BASE_URL = `http://localhost:8080`;
 
 function carregarEspecies() {
     console.log("Carregando espécies...");
