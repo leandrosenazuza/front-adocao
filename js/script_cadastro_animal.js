@@ -72,6 +72,7 @@ function carregarRacas() {
 
 /**
  * Carrega as raças do backend com base na espécie selecionada e as exibe no select de raças.
+ * Cria o botão "Excluir Raça" se ele ainda não existir.
  */
 function carregarRacasPorEspecie() {
     const especieId = parseInt(document.getElementById('especie').value);
@@ -79,7 +80,7 @@ function carregarRacasPorEspecie() {
     selectRaca.innerHTML = '<option value="">Selecione</option>'; // Limpa o select
 
     if (isNaN(especieId) || especieId === '') {
-        return; // Se nenhuma espécie selecionada, não faz nada.
+        return; // Se nenhuma espécie selecionada, não faz nada
     }
 
     console.log("Carregando raças por espécie...", especieId);
@@ -107,10 +108,11 @@ function carregarRacasPorEspecie() {
                 alert("Erro ao carregar raças. A resposta da API não é um array.");
             }
 
-            // Adiciona botão "Excluir Raça" (apenas uma vez)
-            if (!document.querySelector('.botao-excluir-raca')) {
+            // Verifica se o botão "Excluir Raça" já existe usando o ID
+            if (!document.getElementById('btnExcluirRaca')) {
                 const btnExcluirRaca = document.createElement('button');
                 btnExcluirRaca.textContent = 'Excluir Raça';
+                btnExcluirRaca.id = 'btnExcluirRaca'; // Define o ID do botão
                 btnExcluirRaca.style.backgroundColor = 'red';
                 btnExcluirRaca.addEventListener('click', () => {
                     const racaSelecionadaId = selectRaca.value;
@@ -405,7 +407,7 @@ function salvarNovoComportamento() {
  */
 function salvarNovaCirurgia() {
     // 1. Obtém a descrição da cirurgia do input
-    const descricaoCirurgia = document.getElementById('descricaoCirurgia').value;
+    const descricaoCirurgia = document.getElementById('descricaoNovaCirurgia').value;
 
     // 2. Valida se a descrição foi preenchida
     if (!descricaoCirurgia) {
@@ -518,7 +520,7 @@ function salvarAnimal() {
         isCastrado,
         isVermifugado,
         isVacinado,
-        //descricaoAnimal,
+        descricaoAnimal,
         foto
     };
 
