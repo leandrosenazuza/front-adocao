@@ -8,7 +8,12 @@
 /**
  * Carrega as espécies do backend e preenche o select de espécies.
  */
-var API_BASE_URL = `http://localhost:8080`;
+var API_BASE_URL = `https://api-adocao-production.up.railway.app`;
+
+//var API_BASE_URL = `http://localhost:8080`;
+var API_BASE_URL = `https://api-adocao-production.up.railway.app`;
+
+//var API_BASE_URL = `http://localhost:8080`;
 
 function carregarEspecies() {
     console.log("Carregando espécies...");
@@ -85,6 +90,7 @@ function carregarRacasPorEspecie() {
 
     console.log("Carregando raças por espécie...", especieId);
 
+    fetch(API_BASE_URL + '/raca/get/especie/' + especieId)
     fetch(API_BASE_URL + '/raca/get/especie/' + especieId)
         .then(response => {
             if (!response.ok) {
@@ -425,6 +431,7 @@ function salvarNovaCirurgia() {
 
     // 5. Faz a requisição POST para o backend
     fetch(API_BASE_URL + '/cirurgia/criar', { // Verifique se a URL está correta
+    fetch(API_BASE_URL + '/cirurgia/criar', { // Verifique se a URL está correta
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novaCirurgia)
@@ -478,7 +485,8 @@ function salvarAnimal() {
     const isCastrado = document.getElementById('isCastrado').checked;
     const isVermifugado = document.getElementById('isVermifugado').checked;
     const isVacinado = document.getElementById('isVacinado').checked;
-    //const descricaoAnimal = document.getElementById('descricaoAnimal')?.value;
+    const isCirurgia = document.querySelector('input[name="cirurgiaRealizada"]:checked').value;
+    const descricaoAnimal = document.getElementById('descricaoAnimal')?.value;
     const foto = document.getElementById('foto').value;
 
     // 2. Validações
@@ -498,6 +506,7 @@ function salvarAnimal() {
     }
     idade = parseFloat(idade);
 
+    if (!nome || !racaId || !comportamentoId || !foto) {
     if (!nome || !racaId || !comportamentoId || !foto) {
         alert("Por favor, preencha todos os campos obrigatórios.");
         return;
@@ -529,7 +538,7 @@ function salvarAnimal() {
 
     // 5. Determina o método (POST ou PUT) e a URL da requisição
     const metodo = animalId ? 'PUT' : 'POST';
-    const url = animalId ? API_BASE_URL + '/animal/put/${animalId}' : API_BASE_URL + '/animal/criar';
+    const url = animalId ? API_BASE_URL + `/animal/put/${animalId}` : API_BASE_URL + '/animal/criar';
 
     // 6. Faz a requisição fetch
     fetch(url, {
@@ -607,7 +616,10 @@ function preencherFormulario(animal) {
     document.getElementById('isCastrado').checked = animal.isCastrado;
     document.getElementById('isVermifugado').checked = animal.isVermifugado;
     document.getElementById('isVacinado').checked = animal.isVacinado;
-    document.getElementById('isCirurgia').checked = animal.isCirurgia;
+    const cirurgiaRadios = document.querySelectorAll('input[name="cirurgiaRealizada"]');
+    cirurgiaRadios.forEach(radio => {
+        radio.checked = radio.value === animal.cirurgiaRealizada;
+    });
     document.getElementById('descricaoAnimal').value = animal.descricaoAnimal;
     document.getElementById('foto').value = animal.foto;
     document.getElementById('animalForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -654,7 +666,8 @@ function limparFormulario() {
     document.getElementById('isCastrado').checked = false;
     document.getElementById('isVermifugado').checked = false;
     document.getElementById('isVacinado').checked = false;
-    document.getElementById('isCirurgia').checked = false;
+    const cirurgiaRadios = document.querySelectorAll('input[name="cirurgiaRealizada"]');
+    cirurgiaRadios.forEach(radio => radio.checked = false);
     document.getElementById('descricaoAnimal').value = '';
     document.getElementById('foto').value = '';
 }
@@ -717,7 +730,10 @@ function exibirAnimaisEmCards(animais) {
         btnEditar.classList.add('botao-acao', 'botao-editar');
         btnEditar.textContent = 'Editar';
         btnEditar.classList.add('btn-list-editar');
-        btnEditar.addEventListener('click', () => preencherFormulario(animal));
+        btnEditar.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth'});
+            preencherFormulario(animal);
+        });
         botoesContainer.appendChild(btnEditar);
 
         // Botão Excluir
