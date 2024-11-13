@@ -1,3 +1,7 @@
+var API_BASE_URL = `https://api-adocao-production.up.railway.app`;
+
+//var API_BASE_URL = `http://localhost:8080`;
+
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault(); 
 
@@ -9,7 +13,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         senha: password
     };
 
-    fetch('http://localhost:8080/usuario/login', {
+    fetch(API_BASE_URL + `/usuario/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

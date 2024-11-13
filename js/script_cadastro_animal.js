@@ -11,6 +11,9 @@
 var API_BASE_URL = `https://api-adocao-production.up.railway.app`;
 
 //var API_BASE_URL = `http://localhost:8080`;
+var API_BASE_URL = `https://api-adocao-production.up.railway.app`;
+
+//var API_BASE_URL = `http://localhost:8080`;
 
 function carregarEspecies() {
     console.log("Carregando espécies...");
@@ -87,6 +90,7 @@ function carregarRacasPorEspecie() {
 
     console.log("Carregando raças por espécie...", especieId);
 
+    fetch(API_BASE_URL + '/raca/get/especie/' + especieId)
     fetch(API_BASE_URL + '/raca/get/especie/' + especieId)
         .then(response => {
             if (!response.ok) {
@@ -427,6 +431,7 @@ function salvarNovaCirurgia() {
 
     // 5. Faz a requisição POST para o backend
     fetch(API_BASE_URL + '/cirurgia/criar', { // Verifique se a URL está correta
+    fetch(API_BASE_URL + '/cirurgia/criar', { // Verifique se a URL está correta
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novaCirurgia)
@@ -502,6 +507,7 @@ function salvarAnimal() {
     idade = parseFloat(idade);
 
     if (!nome || !racaId || !comportamentoId || !foto) {
+    if (!nome || !racaId || !comportamentoId || !foto) {
         alert("Por favor, preencha todos os campos obrigatórios.");
         return;
     }
@@ -523,7 +529,7 @@ function salvarAnimal() {
         isCastrado,
         isVermifugado,
         isVacinado,
-        descricaoAnimal,
+        //descricaoAnimal,
         foto
     };
 
@@ -625,7 +631,7 @@ function preencherFormulario(animal) {
  * @param {number} id - ID do animal a ser excluído.
  */
 function excluirAnimal(id) {
-    fetch(`${API_BASE_URL}/animal/delete/${id}`, { method: 'DELETE' })
+    fetch(API_BASE_URL + '/animal/delete/${id}', { method: 'DELETE' })
         .then(response => {
             if (!response.ok) {
                 return response.json().then(errorBody => {

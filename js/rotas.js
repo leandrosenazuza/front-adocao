@@ -1,14 +1,16 @@
-const ambiente = "http://localhost:8080";
+var API_BASE_URL = `https://api-adocao-production.up.railway.app`;
+
+//var API_BASE_URL = `http://localhost:8080`;
 
 
 const rotas = {
     animal: {
-        buscaTodos: ambiente + '/animal/all',
-        buscaUm: ambiente + '/animal/'
+        buscaTodos: API_BASE_URL + '/animal/all',
+        buscaUm: API_BASE_URL + '/animal/'
     },
     usuario: {
-        login: ambiente + '/login',
-        cadastrarUsuario: ambiente
+        login: API_BASE_URL + '/login',
+        cadastrarUsuario: API_BASE_URL
     }
 };
 

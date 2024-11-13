@@ -459,6 +459,117 @@ nav ul li:hover a {
     }
 }
 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+    input {
+        justify-items: center;
+        align-items: center;
+    }
+    select {
+        font-size: medium;
+    }
+}
+.insercao-nome-idade {
+    font-size: larger;
+    font-weight: bolder;
+    margin: 10px;
+    display: flex;
+}
+
+.insercao {
+    font-size: larger;
+    font-weight: bolder;
+    margin: 10px;
+    button {
+        margin-left: 5px;
+        padding: 6px 16px;
+        background-color: #396a49;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .descricao-cirurgia {
+        width: 100%;
+    }
+}
+
+.btn-list-editar {
+    font-size: larger;
+    font-weight: bolder;
+    margin: 10px;
+    margin-left: 5px;
+    padding: 8px 12px;
+     background-color: #518662;
+    
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+
+}
+
+.botao-excluir-raca {
+    padding: 8px 16px;
+    background-color: #3d4ac1;
+    color: rgb(182, 58, 58);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.btn-list-excluir{
+    font-size: larger;
+    font-weight: bolder;
+    margin: 10px;
+    margin-left: 5px;
+    padding: 8px 12px;
+     background-color: #865151;
+    
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+
+}
+.btn-list-adotado {
+    font-size: larger;
+    font-weight: bolder;
+    margin: 10px;
+    margin-left: 5px;
+    padding: 8px 12px;
+     background-color: #535ac5;
+    
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+
+}
+
+.modal-content{
+    .insercao {
+        button {
+            margin: 10px;
+        }
+    }
+}
+
+.botao-salvar{
+    button {
+        padding: 8px 16px;
+        background-color: #3d4ac1;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+}
+
 
 #tabelaAnimais {
     width: 100%;
@@ -820,3 +931,4 @@ button.submit {
         margin: 0 10px;
     }
 }
+
