@@ -348,13 +348,117 @@ nav ul li:hover a {
 .form-grid {
     display: grid;
     flex-wrap: wrap;
-    grid-template-columns: 1fr 1fr; /* Duas colunas com largura igual */
-    gap: 20px; /* Espaçamento entre as colunas */
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+    input {
+        justify-items: center;
+        align-items: center;
+    }
+    select {
+        font-size: medium;
+    }
+}
+.insercao-nome-idade {
+    font-size: larger;
+    font-weight: bolder;
+    margin: 10px;
+    display: flex;
 }
 
-.coluna {
-    /* Estilos opcionais para cada coluna */
+.insercao {
+    font-size: larger;
+    font-weight: bolder;
+    margin: 10px;
+    button {
+        margin-left: 5px;
+        padding: 6px 16px;
+        background-color: #396a49;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .descricao-cirurgia {
+        width: 100%;
+    }
 }
+
+.btn-list-editar {
+    font-size: larger;
+    font-weight: bolder;
+    margin: 10px;
+    margin-left: 5px;
+    padding: 8px 12px;
+     background-color: #518662;
+    
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+
+}
+
+.botao-excluir-raca {
+    padding: 8px 16px;
+    background-color: #3d4ac1;
+    color: rgb(182, 58, 58);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.btn-list-excluir{
+    font-size: larger;
+    font-weight: bolder;
+    margin: 10px;
+    margin-left: 5px;
+    padding: 8px 12px;
+     background-color: #865151;
+    
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+
+}
+.btn-list-adotado {
+    font-size: larger;
+    font-weight: bolder;
+    margin: 10px;
+    margin-left: 5px;
+    padding: 8px 12px;
+     background-color: #535ac5;
+    
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+
+}
+
+.modal-content{
+    .insercao {
+        button {
+            margin: 10px;
+        }
+    }
+}
+
+.botao-salvar{
+    button {
+        padding: 8px 16px;
+        background-color: #3d4ac1;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+}
+
 
 #tabelaAnimais {
     width: 100%;
@@ -536,9 +640,183 @@ button.submit {
 
 }
 
-
-
 .cor-vermelha {
-    color: #f82121; /* Ajusta a cor da parte destacada do título */
+    color: #f82121; 
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+@media (max-width: 768px) {
+
+    .body {
+        flex-direction: column;
+        padding: 10px;
+    }
+    
+    .container-body {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    header {
+        flex-direction: column;
+        padding: 10px 20px;
+    }
+
+    .logo img {
+        width: 120px;
+    }
+
+    nav ul li {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+
+    .hero-image {
+        display: none;
+    }
+
+    .hero {
+        p {
+            display: flex;
+            font-weight: bolder;
+            color: black;
+            text-align: center;
+        }
+        h1 {
+            display: none;
+        }
+    }
+
+    .explore-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .banner-sobre {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    .banner-title {
+        font-size: 32px;
+    }
+
+    .animal-card {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .container-login {
+        width: 90%;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+
+    #tabelaAnimais td img {
+        max-width: 80px;
+    }
+
+    header nav ul li a {
+        font-size: 0.9em; 
+        padding: 8px 10px; 
+    }
+
+    header nav ul {
+        gap: 10px;
+    }
+
+    table tr th thead {
+        font-size: 0.9em; 
+        padding: 8px 10px; 
+    }
+
+    .insercao {
+        text-align: center;
+    }
+
+
+.table-solicitacao th, .table-solicitacao td {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+  
+    .table-solicitacao th:nth-child(3),
+    .table-solicitacao td:nth-child(3),
+    .table-solicitacao th:nth-child(4),
+    .table-solicitacao td:nth-child(4) {
+        display: none;
+    }
+
+    button {
+        font-size: 0.5em;
+        padding: 8px 12px;
+    }
+
+    #pageInfo {
+        font-size: 0.9em;
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .table-solicitacao th, .table-solicitacao td {
+        padding: 5px;
+        font-size: 0.8em;
+    }
+
+    .quadro-solicitacao h1, .quadro-solicitacao h2 {
+        font-size: 1.2em;
+    }
+
+    .table-solicitacao, .table-solicitacao thead, .table-solicitacao tbody, .table-solicitacao th, .table-solicitacao td, .table-solicitacao tr {
+        display: block;
+    }
+
+    .table-solicitacao th {
+        background-color: #f4f4f4;
+        padding: 10px;
+    }
+
+    .table-solicitacao td {
+        border-top: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    .table-solicitacao td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        width: 100px;
+        display: inline-block;
+    }
+
+    .table-solicitacao th, .table-solicitacao td {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+  
+    .table-solicitacao th:nth-child(3),
+    .table-solicitacao td:nth-child(3),
+    .table-solicitacao th:nth-child(4),
+    .table-solicitacao td:nth-child(4) {
+        display: none;
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+
+    #pageInfo {
+        font-size: 0.9em;
+        margin: 0 10px;
+    }
+}
