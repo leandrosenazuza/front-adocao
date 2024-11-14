@@ -743,9 +743,51 @@ function exibirAnimaisEmCards(animais) {
         btnAdotado.classList.add('botao-acao', 'botao-adotado');
         btnAdotado.textContent = 'Adotado';
         btnAdotado.classList.add('btn-list-adotado');
+
         btnAdotado.addEventListener('click', () => {
-            // Lógica para marcar como adotado (implementar)
-            alert(`Implementar lógica para marcar o animal ${animal.nome} como adotado`);
+            // Cria o elemento do carimbo "ADOTADO"
+            const adoptedStamp = document.createElement('div');
+            adoptedStamp.textContent = 'ADOTADO';
+            adoptedStamp.classList.add('adopted-stamp'); // Adiciona uma classe para estilização
+            adoptedStamp.style.cssText = `
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: rgba(0, 128, 0, 0.7); // Verde translúcido
+                color: white;
+                padding: 10px 20px;
+                font-weight: bold;
+                border-radius: 5px;
+                z-index: 10; // Garante que fique acima da imagem
+            `;
+
+            // Encontra o container da imagem (pode ser o próprio card ou um container dentro dele)
+            const imgContainer = img.parentNode; // Considerando que 'img' é o elemento da imagem
+
+            // Verifica se o carimbo já existe
+            const existingStamp = imgContainer.querySelector('.adopted-stamp');
+
+            if (existingStamp) {
+                // Remove o carimbo se já existir (para alternar o estado)
+                imgContainer.removeChild(existingStamp);
+                // Adiciona a classe 'nao-adotado' à imagem (se existir uma classe para isso)
+                img.classList.remove('adotado');
+
+                // Lógica para atualizar o status de adoção no backend (removendo o status) - Se necessário
+                // ... seu código aqui ...
+
+            } else {
+                // Adiciona o carimbo se não existir
+                imgContainer.insertBefore(adoptedStamp, img); // Insere o carimbo ANTES da imagem
+                // Adiciona a classe 'adotado' à imagem (se existir uma classe para isso)
+                 img.classList.add('adotado');
+
+
+
+                // Lógica para atualizar o status de adoção no backend (marcando como adotado) - Se necessário
+                // ... seu código aqui ...
+            }
         });
         botoesContainer.appendChild(btnAdotado);
 
