@@ -431,7 +431,6 @@ function salvarNovaCirurgia() {
 
     // 5. Faz a requisição POST para o backend
     fetch(API_BASE_URL + '/cirurgia/criar', { // Verifique se a URL está correta
-        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novaCirurgia)
     })
@@ -527,7 +526,8 @@ function salvarAnimal() {
         isCastrado,
         isVermifugado,
         isVacinado,
-        //descricaoAnimal,
+        isCirurgia,
+        descricaoAnimal,
         foto
     };
 
@@ -603,21 +603,17 @@ function preencherFormulario(animal) {
     document.getElementById('nome').value = animal.nome;
     document.getElementById('idade').value = animal.idade;
     document.getElementById('raca').value = animal.raca.id;
-
-    const sexoRadios = document.querySelectorAll('input[name="sexo"]');
-    sexoRadios.forEach(radio => {
-        radio.checked = radio.value === animal.sexo;
-    });
-
+    if (animal.sexo) { // Verifica se animal.sexo não é nulo
+        document.querySelector(`input[name="sexo"][value="${animal.sexo}"]`).checked = true;
+    }
     document.getElementById('comportamento').value = animal.comportamento.id;
     document.getElementById('cirurgia').value = animal.cirurgia ? animal.cirurgia.id : '';
     document.getElementById('isCastrado').checked = animal.isCastrado;
     document.getElementById('isVermifugado').checked = animal.isVermifugado;
     document.getElementById('isVacinado').checked = animal.isVacinado;
-    const cirurgiaRadios = document.querySelectorAll('input[name="cirurgiaRealizada"]');
-    cirurgiaRadios.forEach(radio => {
-        radio.checked = radio.value === animal.cirurgiaRealizada;
-    });
+    if (animal.isCirurgia !== null && animal.isCirurgia !== undefined) { // Verifica se animal.isCirurgia não é nulo nem indefinido
+        document.querySelector(`input[name="cirurgiaRealizada"][value="${animal.isCirurgia ? 'SIM' : 'NAO'}"]`).checked = true;
+    }
     document.getElementById('descricaoAnimal').value = animal.descricaoAnimal;
     document.getElementById('foto').value = animal.foto;
     document.getElementById('animalForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -629,7 +625,7 @@ function preencherFormulario(animal) {
  * @param {number} id - ID do animal a ser excluído.
  */
 function excluirAnimal(id) {
-    fetch(API_BASE_URL + '/animal/delete/${id}', { method: 'DELETE' })
+    fetch(`${API_BASE_URL}/animal/delete/${id}`, { method: 'DELETE' })
         .then(response => {
             if (!response.ok) {
                 return response.json().then(errorBody => {
@@ -656,16 +652,16 @@ function limparFormulario() {
     document.getElementById('raca').value = '';
 
     const sexoRadios = document.querySelectorAll('input[name="sexo"]');
-    sexoRadios.forEach(radio => radio.checked = false);
+    sexoRadios.forEach(radio => radio.checked = false); // Desmarca todos
 
 
     document.getElementById('comportamento').value = '';
     document.getElementById('cirurgia').value = '';
     document.getElementById('isCastrado').checked = false;
     document.getElementById('isVermifugado').checked = false;
-    document.getElementById('isVacinado').checked = false;
+    document.getElementById('isVacinado').checked = false
     const cirurgiaRadios = document.querySelectorAll('input[name="cirurgiaRealizada"]');
-    cirurgiaRadios.forEach(radio => radio.checked = false);
+    cirurgiaRadios.forEach(radio => radio.checked = false); // Desmarca todos. Você pode definir um valor padrão aqui, se necessário
     document.getElementById('descricaoAnimal').value = '';
     document.getElementById('foto').value = '';
 }
