@@ -431,7 +431,6 @@ function salvarNovaCirurgia() {
 
     // 5. Faz a requisição POST para o backend
     fetch(API_BASE_URL + '/cirurgia/criar', { // Verifique se a URL está correta
-    fetch(API_BASE_URL + '/cirurgia/criar', { // Verifique se a URL está correta
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novaCirurgia)
@@ -506,7 +505,6 @@ function salvarAnimal() {
     }
     idade = parseFloat(idade);
 
-    if (!nome || !racaId || !comportamentoId || !foto) {
     if (!nome || !racaId || !comportamentoId || !foto) {
         alert("Por favor, preencha todos os campos obrigatórios.");
         return;
